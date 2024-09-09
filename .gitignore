@@ -3,3 +3,5 @@ venv/
 __pycache__/
 
 *.zip
+
+openai_api_key.txt
