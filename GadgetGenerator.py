@@ -127,6 +127,7 @@ def generate_creative_commit_message():
                 f"useless components and over-engineered processes. Make the message sound highly technical (pseudo-scientific) but ultimately "
                 f"meaningless.  The message should seem valid and not overtly state that it is meaningless, but does not need to have a real maning. "
                 f"This commit message shall not exceed 60 characters."
+                f"Examples of commit messages include: `Optimized quantum data structures`, `Refactored neural network architecture`, `Recursive cryptographic ledger for inter-component state.`"
             }
         ],
         max_tokens=350,

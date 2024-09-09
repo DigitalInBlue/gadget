@@ -215,43 +215,52 @@ class Gadget:
 
 # Main execution
 if __name__ == "__main__":
-    # Start timer
-    start_time = time.time()
+    try:
+        # Start timer
+        start_time = time.time()
 
-    # Create an instance of the Gadget
-    gadget = Gadget()
+        # Create an instance of the Gadget
+        gadget = Gadget()
 
-    # Discover Gadget components in the current directory
-    gadget.discover_components()
+        # Discover Gadget components in the current directory
+        gadget.discover_components()
 
-    # Assemble the machine starting from the random initial input
-    assembled_steps = gadget.assemble_machine()
+        # Assemble the machine starting from the random initial input
+        assembled_steps = gadget.assemble_machine()
 
-    # Make sure we have a gadget to run (that we have assembeled_steps)
-    if not assembled_steps:
-        logger.error("No gadget to run. Exiting.")
-        exit()
+        # Make sure we have a gadget to run (that we have assembeled_steps)
+        if not assembled_steps:
+            logger.error("No gadget to run. Exiting.")
+            sys.exit(1)  # Return exit code 1 to indicate no gadget found
 
-    # Get what the first component expects as input
-    first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
-    logger.info(f"First component input type: {first_component_input_type} for \"{assembled_steps[0].get_name()}\"")
+        # Get what the first component expects as input
+        first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
+        logger.info(f"First component input type: {first_component_input_type} for \"{assembled_steps[0].get_name()}\"")
 
-    # Generate a random input of the expected type for the first component of type 'first_component_input_type'
-    initial_input = gadget.generate_random_input(first_component_input_type)
-    logger.info(f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})")
+        # Generate a random input of the expected type for the first component of type 'first_component_input_type'
+        initial_input = gadget.generate_random_input(first_component_input_type)
+        logger.info(f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})")
 
-    # Execute the machine if possible
-    if assembled_steps:
-        final_output = gadget.execute(initial_input)
-        logger.info(f"Final output: {final_output} (type: {type(final_output).__name__})")
+        # Execute the machine if possible
+        if assembled_steps:
+            final_output = gadget.execute(initial_input)
+            logger.info(f"Final output: {final_output} (type: {type(final_output).__name__})")
 
-    # Report incompatible components
-    gadget.report_incompatibilities()
+        # Report incompatible components
+        gadget.report_incompatibilities()
 
-    # Print the blockchain
-    gadget.print_blockchain()
+        # Print the blockchain
+        gadget.print_blockchain()
 
-    # End timer and calculate total run time
-    end_time = time.time()
-    total_time = end_time - start_time
-    logger.info(f"Total execution time: {total_time:.2f} seconds")
+        # End timer and calculate total run time
+        end_time = time.time()
+        total_time = end_time - start_time
+        logger.info(f"Total execution time: {total_time:.2f} seconds")
+
+        # If everything worked, return exit code 0
+        sys.exit(0)
+
+    except Exception as e:
+        # Log the exception and return a non-zero exit code
+        logger.error(f"An unexpected error occurred: {e}")
+        sys.exit(2)  # Return exit code 2 for unexpected errors
