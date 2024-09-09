@@ -2,3 +2,4 @@ pillow
 coloredlogs
 pytest
 openai
+requests
