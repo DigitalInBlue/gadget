@@ -100,7 +100,7 @@ class GadgetComponent:
         """Get the nonce of the current block"""
         return self.nonce
 
-    def _mint_block(self, difficulty=6):
+    def _mint_block(self, difficulty=5):
         """Mint a new block for the blockchain based on the component's execution with proof of work."""
         self.logger.info(f"Starting minting process for \"{self.get_name()}\"...")
         self.nonce = 0  # Initialize the nonce

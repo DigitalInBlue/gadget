@@ -61,6 +61,7 @@ def generate_issue_title():
             {"role": "user", "content":
                 f"Generate a pseudo-scientific issue title related to advanced computing, cryptography, blockchain, or quantum computing. The title should sound highly complex and not mean much."
                 f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
+                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
                 f"Examples of titles include: `Quantum Blockchain Inconsistency in Recursive Cryptographic Hashing`"
             }
         ],
@@ -84,6 +85,7 @@ def generate_issue_body(issue_title):
             {"role": "user", "content":
                 f"Generate a pseudo-scientific issue description related to the title \"{issue_title}\". "
                 f"The description should be complex, technical-sounding, but not necessarily meaningful. "
+                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
                 f"Return only the detailed issue text.  Do not include any other text or information. Do not wrap the text in any way. "
             }
         ],

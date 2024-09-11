@@ -3,3 +3,4 @@ coloredlogs
 pytest
 openai
 requests
+numpy
