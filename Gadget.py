@@ -14,7 +14,7 @@ import sys
 import copy
 
 # Configure colored logging
-coloredlogs.install()
+coloredlogs.install(level='DEBUG')
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
