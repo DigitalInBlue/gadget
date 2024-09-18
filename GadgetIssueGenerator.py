@@ -116,16 +116,11 @@ if __name__ == "__main__":
     logger.info(f"Generated issue:\n-- {title} --\n{body}")
 
     # Create an issue on GitHub
-    # Ask the user if they want to push the generated issue to GitHub
-    user_response = input(f"Do you want to create a GitHub issue with the title '{title}'? (y/n): ").strip().lower()
-    if user_response == 'y':
-        # Repository information
-        repo = "DigitalInBlue/gadget"  # Replace with the actual repository name
+    # Repository information
+    repo = "DigitalInBlue/gadget"  # Replace with the actual repository name
 
-        # Read GitHub token
-        token = read_github_token()
+    # Read GitHub token
+    token = read_github_token()
 
-        create_github_issue(repo, title, body, token)
-    else:
-        logger.info("Issue was not created.")
+    create_github_issue(repo, title, body, token)
 

@@ -104,28 +104,27 @@ def run_tests_and_handle_result(file_name):
             logger.info(f"Commit message: {commit_message}")
 
             # Ask the user if they want to stage, commit, and push
-            user_response = input(f"Do you want to stage, commit, and push '{file_name}'? (y/n): ").strip().lower()
+            # user_response = input(f"Do you want to stage, commit, and push '{file_name}'? (y/n): ").strip().lower()
 
-            if user_response == 'y':
-                # Stage the new file
-                subprocess.run(['git', 'add', file_name])
+            # if user_response == 'y':
 
-                # Commit the new file with the generated commit message
-                subprocess.run(['git', 'commit', '-m', commit_message])
+            # Stage the new file
+            subprocess.run(['git', 'add', file_name])
 
-                # Push the commit to the origin
-                subprocess.run(['git', 'push', 'origin', 'HEAD'])
+            # Commit the new file with the generated commit message
+            subprocess.run(['git', 'commit', '-m', commit_message])
 
-                logger.info(f"File '{file_name}' committed and pushed to origin.")
-            else:
-                logger.info(f"File '{file_name}' was not committed.")
+            # Push the commit to the origin
+            subprocess.run(['git', 'push', 'origin', 'HEAD'])
+
+            logger.info(f"File '{file_name}' committed and pushed to origin.")
         else:
             # Tests failed, delete the generated file
-            # os.remove(file_name)
+            os.remove(file_name)
             logger.error(f"Tests failed. {file_name} has been deleted.")
     except Exception as e:
         logger.error(f"Error while running tests: {str(e)}")
-        # os.remove(file_name)
+        os.remove(file_name)
         logger.error(f"{file_name} has been deleted due to test failure.")
 
 
