@@ -49,8 +49,7 @@ def create_github_issue(repo, title, body, token):
 
 
 # Function to generate a complex, useless Gadget component using the latest OpenAI API
-def generate_issue_title():
-
+def generate_issue_title_1():
     logger.info(f"Generating a new issue title...")
 
     # Use the new "chat.completions" API
@@ -62,7 +61,30 @@ def generate_issue_title():
                 f"Generate a pseudo-scientific issue title related to advanced computing, cryptography, blockchain, or quantum computing. The title should sound highly complex and not mean much."
                 f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
                 f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
-                f"Examples of titles include: `Quantum Blockchain Inconsistency in Recursive Cryptographic Hashing`"
+                f"Examples of titles include: `Quantum Blockchain Inconsistency`, `Cryptographic Hash Collision`, `Quantum Entanglement Protocol Upgrade`."
+            }
+        ],
+        temperature=0.9
+    )
+
+    # Extract the generated class code from the response
+    return response.choices[0].message.content.strip()
+
+
+# Function to generate a complex, useless Gadget component using the latest OpenAI API
+def generate_issue_title_2():
+    logger.info(f"Generating a new issue title...")
+
+    # Use the new "chat.completions" API
+    response = openai.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
+            {"role": "user", "content":
+                f"Generate a pseudo-scientific issue title related to advanced computing. The title does not need to be logically accurate."
+                f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
+                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                f"Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'
             }
         ],
         temperature=0.9
@@ -110,7 +132,12 @@ if __name__ == "__main__":
     openai.api_key = read_openai_api_key()
 
     # Generate issue title and body using OpenAI API
-    title = generate_issue_title()
+    title = None
+    random_number = random.randint(1, 2)
+    if random_number == 1:
+        title = generate_issue_title_1()
+    else:
+        title = generate_issue_title_2()
     body = generate_issue_body(title)
 
     logger.info(f"Generated issue:\n-- {title} --\n{body}")

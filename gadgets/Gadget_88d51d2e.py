@@ -8,7 +8,7 @@ class Gadget_88d51d2e(GadgetComponent):
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
             return None
-        
+
         try:
             # Preprocessing step: Convert input str to ASCII values and sum them
             ascii_sum = sum(ord(char) for char in input_data)
@@ -30,12 +30,12 @@ class Gadget_88d51d2e(GadgetComponent):
                         else:
                             processed_value -= sub_value / (k + 1)
             logger.info(f'Intermediate processed value: {processed_value}')
-            
+
             # Stage 3: Transform the result using an arbitrary power and logarithm
             transformed_value = (processed_value ** 1.5) + (ascii_sum % 3)
             final_result = transformed_value / (grid_size + 1)
             logger.info(f'Transformed value: {transformed_value}, Final result: {final_result}')
-            
+
             return final_result
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')

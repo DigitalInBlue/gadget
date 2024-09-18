@@ -21,7 +21,7 @@ class Gadget_2507b114(GadgetComponent):
                     intermediary_value = ((i * j) ** 0.5) / (i + j + 1)
                     complex_result += intermediary_value
                     logger.debug(f'Intermediate step at i={i}, j={j}, value={intermediary_value}')
-            
+
             logger.info(f'Step 2: Calculated complex result {complex_result}')
 
             # Pointless string manipulation

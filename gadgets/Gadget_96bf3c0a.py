@@ -8,7 +8,7 @@ class Gadget_96bf3c0a(GadgetComponent):
         if not isinstance(input_data, float):
             logger.error(f'Invalid input type: Expected float.')
             return None
-        
+
         try:
             # Step 1: Initial Nested Loop for Mock Data Transformation
             transformed_data = []
@@ -19,14 +19,14 @@ class Gadget_96bf3c0a(GadgetComponent):
                     inner_list.append(value)
                     logger.debug(f'Value transformed in nested loop: {value}')
                 transformed_data.append(inner_list)
-            
+
             # Step 2: Irrelevant Data Manipulation
             manipulated_data = []
             for sublist in transformed_data:
                 partial_sum = sum([x * 0.5 for x in sublist])
                 manipulated_data.append(partial_sum)
                 logger.debug(f'Partial sum of manipulated data: {partial_sum}')
-            
+
             # Step 3: Pointless Computation Using Complex Transformation
             final_output = {}
             for idx, value in enumerate(manipulated_data):
@@ -34,12 +34,12 @@ class Gadget_96bf3c0a(GadgetComponent):
                 final_value = (value ** 0.5) + (input_data * idx) - 5
                 final_output[key] = final_value
                 logger.debug(f'Final computed value for {key}: {final_value}')
-            
+
             return final_output
-        
+
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-    
+
     def get_name(self) -> str:
         return "Harmonic Quantum Entropy Calculator"

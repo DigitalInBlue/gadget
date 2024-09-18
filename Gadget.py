@@ -12,6 +12,7 @@ import coloredlogs
 import time
 import sys
 import copy
+import argparse
 
 # Configure colored logging
 coloredlogs.install(level='DEBUG')
@@ -213,54 +214,77 @@ class Gadget:
         logger.info("----------------------")
 
 
+def run_specific_gadget(gadget, class_name):
+    """Run a specific gadget by class name."""
+    for component in gadget.components:
+        if component.__class__.__name__ == class_name:
+            logger.info(f"Running specific gadget: {class_name}")
+            first_component_input_type = inspect.signature(component.run).parameters['input_data'].annotation
+            initial_input = gadget.generate_random_input(first_component_input_type)
+            final_output = component.execute(initial_input)
+            logger.info(f"Output from {class_name}: {final_output}")
+            return
+    logger.error(f"No gadget found with the class name: {class_name}")
+    sys.exit(1)
+
+
 # Main execution
 if __name__ == "__main__":
-    try:
-        # Start timer
-        start_time = time.time()
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(description="Run a specific Gadget or a random one.")
+    parser.add_argument('--debug', type=str, help='Optional Gadget class name to debug a specific gadget.')
+    args = parser.parse_args()
 
-        # Create an instance of the Gadget
-        gadget = Gadget()
+    # Start timer
+    start_time = time.time()
 
-        # Discover Gadget components in the current directory
-        gadget.discover_components()
+    # Create an instance of the Gadget
+    gadget = Gadget()
 
-        # Assemble the machine starting from the random initial input
-        assembled_steps = gadget.assemble_machine()
+    # Discover Gadget components in the current directory
+    gadget.discover_components()
 
-        # Make sure we have a gadget to run (that we have assembeled_steps)
-        if not assembled_steps:
-            logger.error("No gadget to run. Exiting.")
-            sys.exit(1)  # Return exit code 1 to indicate no gadget found
+    if args.debug:
+        run_specific_gadget(gadget, args.debug)
+    else:
+        try:
+            # Assemble the machine starting from the random initial input
+            assembled_steps = gadget.assemble_machine()
 
-        # Get what the first component expects as input
-        first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
-        logger.info(f"First component input type: {first_component_input_type} for \"{assembled_steps[0].get_name()}\"")
+            # Make sure we have a gadget to run (that we have assembeled_steps)
+            if not assembled_steps:
+                logger.error("No gadget to run. Exiting.")
+                sys.exit(1)  # Return exit code 1 to indicate no gadget found
 
-        # Generate a random input of the expected type for the first component of type 'first_component_input_type'
-        initial_input = gadget.generate_random_input(first_component_input_type)
-        logger.info(f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})")
+            # Get what the first component expects as input
+            first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
+            logger.info(f"First component input type: {first_component_input_type} for \"{assembled_steps[0].get_name()}\"")
 
-        # Execute the machine if possible
-        if assembled_steps:
-            final_output = gadget.execute(initial_input)
-            logger.info(f"Final output: {final_output} (type: {type(final_output).__name__})")
+            # Generate a random input of the expected type for the first component of type 'first_component_input_type'
+            initial_input = gadget.generate_random_input(first_component_input_type)
+            logger.info(f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})")
 
-        # Report incompatible components
-        gadget.report_incompatibilities()
+            # Execute the machine if possible
+            if assembled_steps:
+                final_output = gadget.execute(initial_input)
+                logger.info(f"Final output: {final_output} (type: {type(final_output).__name__})")
 
-        # Print the blockchain
-        gadget.print_blockchain()
+            # Report incompatible components
+            gadget.report_incompatibilities()
 
-        # End timer and calculate total run time
-        end_time = time.time()
-        total_time = end_time - start_time
-        logger.info(f"Total execution time: {total_time:.2f} seconds")
+            # Print the blockchain
+            gadget.print_blockchain()
 
-        # If everything worked, return exit code 0
-        sys.exit(0)
+            # End timer and calculate total run time
+            end_time = time.time()
+            total_time = end_time - start_time
+            logger.info(f"Total execution time: {total_time:.2f} seconds")
 
-    except Exception as e:
-        # Log the exception and return a non-zero exit code
-        logger.error(f"An unexpected error occurred: {e}")
-        sys.exit(2)  # Return exit code 2 for unexpected errors
+            # If everything worked, return exit code 0
+            sys.exit(0)
+
+        except Exception as e:
+            # Log the exception and return a non-zero exit code
+            logger.error(f"An unexpected error occurred: {e}")
+            sys.exit(2)  # Return exit code 2 for unexpected errors
+

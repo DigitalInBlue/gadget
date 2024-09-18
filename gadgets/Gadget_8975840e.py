@@ -13,26 +13,26 @@ class Gadget_8975840e(GadgetComponent):
         try:
             width, height = input_data.size
             logger.info(f'Image dimensions: {width}x{height}')
-            
+
             total_value = 0
-            
+
             for x in range(width):
                 for y in range(height):
                     pixel = input_data.getpixel((x, y))
                     logger.debug(f'Processing pixel at ({x},{y}): {pixel}')
-                    
+
                     pixel_value = sum(pixel) / len(pixel)
-                    
+
                     for i in range(100):
                         pixel_value += (pixel_value ** 0.5) - (i % 3)
                         pixel_value *= 1.0001
-                    
+
                     total_value += pixel_value
 
             total_value = total_value ** 0.5 / (width * height)
-            
+
             logger.info(f'Computed total value: {total_value}')
-            
+
             random_noise = 1
             for j in range(50):
                 random_noise += ((j ** 0.3) / (total_value + 0.1))
