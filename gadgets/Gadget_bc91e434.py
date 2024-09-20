@@ -6,13 +6,13 @@ logger = logging.getLogger(__name__)
 class Gadget_bc91e434(GadgetComponent):
 
     def get_name(self) -> str:
-        return "Quantum Dimensional Flux Capacitor"
+        return __file__ + ": " + "Quantum Dimensional Flux Capacitor"
 
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
             return None
-        
+
         try:
             complex_value = 0
             length = len(input_data)

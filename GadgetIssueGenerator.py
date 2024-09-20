@@ -58,7 +58,7 @@ def generate_issue_title_1():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific issue title related to advanced computing, cryptography, blockchain, or quantum computing. The title should sound highly complex and not mean much."
+                f"Generate a pseudo-scientific or science-fiction issue title related to advanced computing, cryptography, blockchain, or quantum computing. The title should sound highly complex and not mean much."
                 f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
                 f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
                 f"Examples of titles include: `Quantum Blockchain Inconsistency`, `Cryptographic Hash Collision`, `Quantum Entanglement Protocol Upgrade`."
@@ -81,7 +81,7 @@ def generate_issue_title_2():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific issue title related to advanced computing. The title does not need to be logically accurate."
+                f"Generate a pseudo-scientific or science-fiction issue title related to advanced computing. The title does not need to be logically accurate."
                 f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
                 f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
                 f"Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'
@@ -105,9 +105,9 @@ def generate_issue_body(issue_title):
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific issue description related to the title \"{issue_title}\". "
+                f"Generate a pseudo-scientific or science-fiction issue description related to the title \"{issue_title}\". "
                 f"The description should be complex, technical-sounding, but not necessarily meaningful. "
-                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'. "
                 f"Return only the detailed issue text.  Do not include any other text or information. Do not wrap the text in any way. "
             }
         ],

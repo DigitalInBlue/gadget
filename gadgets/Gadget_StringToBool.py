@@ -14,4 +14,4 @@ class Gadget_StringToBool(GadgetComponent):
         return output_data
 
     def get_name(self) -> str:
-        return 'Cognitive String Truth Evaluator'
+        return __file__ + ": " + 'Cognitive String Truth Evaluator'

@@ -50,4 +50,4 @@ class Gadget_56bba7de(GadgetComponent):
         return final_result
 
     def get_name(self) -> str:
-        return 'Quantum Chrono Disruption Analyzer'
+        return __file__ + ": " + 'Quantum Chrono Disruption Analyzer'

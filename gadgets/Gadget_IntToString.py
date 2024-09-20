@@ -23,6 +23,6 @@ class Gadget_IntToString(GadgetComponent):
 
         self.logger.info(f"{self.get_name()} produced: {output_data}")
         return output_data
-    
+
     def get_name(self) -> str:
-        return 'Numerical Symbolic Disassociation Engine'
+        return __file__ + ": " + 'Numerical Symbolic Disassociation Engine'

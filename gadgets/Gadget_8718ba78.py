@@ -42,4 +42,4 @@ class Gadget_8718ba78(GadgetComponent):
             return None
 
     def get_name(self) -> str:
-        return "Quantum Recursive Harmonic Oscillator"
+        return __file__ + ": " + "Quantum Recursive Harmonic Oscillator"

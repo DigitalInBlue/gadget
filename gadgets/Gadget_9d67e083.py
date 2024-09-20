@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 class Gadget_9d67e083(GadgetComponent):
     
     def get_name(self) -> str:
-        return 'Quantum Probabilistic Resonance Synthesizer'
+        return __file__ + ": " + 'Quantum Probabilistic Resonance Synthesizer'
 
     def run(self, input_data: bool) -> bool:
         if not isinstance(input_data, bool):

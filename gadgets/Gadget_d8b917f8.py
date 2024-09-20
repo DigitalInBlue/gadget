@@ -47,4 +47,4 @@ class Gadget_d8b917f8(GadgetComponent):
             return None
 
     def get_name(self) -> str:
-        return "Quantum Orthogonal Data Synergizer"
+        return __file__ + ": " + "Quantum Orthogonal Data Synergizer"

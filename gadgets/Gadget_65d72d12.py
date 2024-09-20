@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 class Gadget_65d72d12(GadgetComponent):
 
     def get_name(self):
-        return "Hyperdimensional Quantum Entanglement Harmonizer"
+        return __file__ + ": " + "Hyperdimensional Quantum Entanglement Harmonizer"
 
     def run(self, input_data: float) -> float:
         if not isinstance(input_data, float):

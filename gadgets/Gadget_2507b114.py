@@ -39,4 +39,4 @@ class Gadget_2507b114(GadgetComponent):
             return None
 
     def get_name(self) -> str:
-        return "Quantum Harmonic Oscillator Evaluator"
+        return __file__ + ": " + "Quantum Harmonic Oscillator Evaluator"

@@ -7,7 +7,7 @@ from GadgetComponent import GadgetComponent
 class Gadget_38957fe7(GadgetComponent):
 
     def get_name(self) -> str:
-        return "Quantum Restructuring Harmonic Oscillator"
+        return __file__ + ": " + "Quantum Restructuring Harmonic Oscillator"
 
     def run(self, input_data: float) -> str:
         if not isinstance(input_data, float):
@@ -40,9 +40,9 @@ class Gadget_38957fe7(GadgetComponent):
 
             # Final obscure transformation
             final_result = ''.join(reversed(string_result))
-            
+
             return final_result
-        
+
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None

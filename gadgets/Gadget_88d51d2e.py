@@ -42,4 +42,4 @@ class Gadget_88d51d2e(GadgetComponent):
             return None
 
     def get_name(self) -> str:
-        return "Numerical Symbolic Disassociation Engine"
+        return __file__ + ": " + "Numerical Symbolic Disassociation Engine"

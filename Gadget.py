@@ -113,7 +113,12 @@ class Gadget:
 
         while len(self.steps) <= 1:
             remaining_components = self.components[:]
-            shuffle(remaining_components)  # Randomize the order of components to create a different chain each time
+
+            # Seed the shuffle with the current date and time
+            random.seed(time.time())
+
+            # Randomize the order of components to create a different chain each time
+            shuffle(remaining_components)
 
             # Start with a random component
             self.steps.append(remaining_components.pop())
@@ -204,12 +209,30 @@ class Gadget:
         for component in self.steps:
             logger.info(f"Block {block_number}:")
             logger.info(f"  Component: {component.get_name()}")
-            logger.info(f"  Hash: {component.block_hash[:8]}")
-            logger.info(f"  Previous Hash: {component.previous_hash[:8] if component.previous_hash else 'None'}")
+
+            if hasattr(component, 'block_hash') and component.block_hash:
+                logger.info(f"  Hash: {component.block_hash[:8]}")
+            else:
+                logger.info("  Hash: None")
+
+            if hasattr(component, 'previous_hash') and component.previous_hash:
+                logger.info(f"  Previous Hash: {component.previous_hash[:8] if component.previous_hash else 'None'}")
+            else:
+                logger.info("  Previous Hash: None")
+
             logger.info(f"  Nonce: {component.nonce}")
             logger.info(f"  Run Time: {component.run_time:.4f} seconds")
-            logger.info(f"  Mint Time: {component.mint_time:.4f} seconds")
-            logger.info(f"  Timestamp: {component.timestamp.strftime("%d%m%Y-%H:%M:%S.%f")[:-2]}")
+
+            if hasattr(component, 'mint_time'):
+                logger.info(f"  Mint Time: {component.mint_time:.4f} seconds")
+            else:
+                logger.info("  Mint Time: None")
+
+            if hasattr(component, 'timestamp'):
+                logger.info(f"  Timestamp: {component.timestamp.strftime("%d%m%Y-%H:%M:%S.%f")[:-2]}")
+            else:
+                logger.info("  Timestamp: None")
+
             block_number += 1
         logger.info("----------------------")
 
@@ -233,6 +256,7 @@ if __name__ == "__main__":
     # Set up argument parsing
     parser = argparse.ArgumentParser(description="Run a specific Gadget or a random one.")
     parser.add_argument('--debug', type=str, help='Optional Gadget class name to debug a specific gadget.')
+    parser.add_argument('--debugLoop', type=str, help='Optional Gadget class name to debug a specific gadget in a loop until it crashes.')
     args = parser.parse_args()
 
     # Start timer
@@ -246,6 +270,9 @@ if __name__ == "__main__":
 
     if args.debug:
         run_specific_gadget(gadget, args.debug)
+    elif args.debugLoop:
+        while True:
+            run_specific_gadget(gadget, args.debugLoop)
     else:
         try:
             # Assemble the machine starting from the random initial input

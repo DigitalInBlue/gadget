@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 class Gadget_9868a255(GadgetComponent):
     def get_name(self):
-        return "Quantum Algorithmic Temporal Synthesizer"
+        return __file__ + ": " + "Quantum Algorithmic Temporal Synthesizer"
 
     def run(self, input_data: float) -> dict:
         if not isinstance(input_data, float):

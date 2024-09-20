@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 # List of available Python programs
 scripts = [
     'GadgetGenerator.py',
-    'GadgetIssueGenerator.py'
-    'GadgetIssueCloser.py'
+    'GadgetIssueGenerator.py',
+    'GadgetIssueCloser.py',
     'Gadget.py'
     # You can easily add more scripts here
 ]
@@ -58,14 +58,15 @@ def main():
             else:
                 logger.info("Outside of the 6 AM - 10 PM window. No scripts will be run.")
 
-            # Pick a random time between MIN_TIME and MAX_TIME in minutes
-            delay_minutes = random.randint(MIN_TIME, MAX_TIME)
-            delay_seconds = delay_minutes * 60
-            logger.info(f"Waiting for {delay_minutes} minutes...")
+            if last_exit_code < 2:
+                # Pick a random time between MIN_TIME and MAX_TIME in minutes
+                delay_minutes = random.randint(MIN_TIME, MAX_TIME)
+                delay_seconds = delay_minutes * 60
+                logger.info(f"Waiting for {delay_minutes} minutes...")
 
-            # Progress bar for the delay
-            for _ in tqdm(range(delay_seconds), desc=f"Waiting {delay_minutes} minutes", unit="s"):
-                time.sleep(1)
+                # Progress bar for the delay
+                for _ in tqdm(range(delay_seconds), desc=f"Waiting {delay_minutes} minutes", unit="s"):
+                    time.sleep(1)
 
     except KeyboardInterrupt:
         logger.info("GadgetWorker stopped by the user.")

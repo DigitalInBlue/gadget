@@ -12,14 +12,14 @@ class Gadget_fccba0ed(GadgetComponent):
         try:
             result = ""
             logger.debug(f'Initial input_data: {input_data}')
-            
+
             # Nested loops performing obscure operations
             for i in range(1, 5):
                 temp_result = 1
                 for j in range(1, i + 1):
                     temp_result *= j
                     logger.debug(f'Interim factorial at step {j}: {temp_result}')
-                
+
                 # Pointless calculations
                 buffer = []
                 for k in range(100, 105):
@@ -31,7 +31,7 @@ class Gadget_fccba0ed(GadgetComponent):
                 logger.debug(f'Transformation result: {transformation}')
 
                 result += f"{''.join(transformation)} "
-            
+
             if input_data:
                 result += "Affirmative"
             else:

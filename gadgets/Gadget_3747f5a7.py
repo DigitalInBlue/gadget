@@ -55,4 +55,4 @@ class Gadget_3747f5a7(GadgetComponent):
         return result
 
     def get_name(self) -> str:
-        return 'Binary Cognitive Recontextualizer'
+        return __file__ + ": " + 'Binary Cognitive Recontextualizer'

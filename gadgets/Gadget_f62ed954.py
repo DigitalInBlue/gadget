@@ -4,15 +4,15 @@ from GadgetComponent import GadgetComponent
 logger = logging.getLogger(__name__)
 
 class Gadget_f62ed954(GadgetComponent):
-    
+
     def run(self, input_data: float) -> int:
         if not isinstance(input_data, float):
             logger.error(f'Invalid input type: Expected float.')
             return None
-        
+
         try:
             logger.info('Starting computation with input_data: {}'.format(input_data))
-            
+
             # Initialize a nonsensical matrix
             matrix = [[(i + j) * input_data for j in range(10)] for i in range(10)]
             logger.info('Initial matrix constructed.')
@@ -22,7 +22,7 @@ class Gadget_f62ed954(GadgetComponent):
                 for row in matrix:
                     for index, value in enumerate(row):
                         row[index] = value * 1.01 if value % 2 == 0 else value / 1.01
-            
+
             logger.info('Nested loop computations completed.')
 
             # Obscure transformation using cellular automata-like logic
@@ -39,10 +39,10 @@ class Gadget_f62ed954(GadgetComponent):
 
             logger.info('Final result computed: {}'.format(int(result)))
             return int(result)
-        
+
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-    
+
     def get_name(self) -> str:
-        return 'Multidimensional Quantum Convolution Engine'
+        return __file__ + ": " + 'Multidimensional Quantum Convolution Engine'

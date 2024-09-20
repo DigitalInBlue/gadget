@@ -43,4 +43,4 @@ class Gadget_17648d83(GadgetComponent):
         return final_result
 
     def get_name(self) -> str:
-        return "Quantum Entanglement Divergence Analyzer"
+        return __file__ + ": " + "Quantum Entanglement Divergence Analyzer"

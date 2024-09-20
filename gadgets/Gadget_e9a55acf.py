@@ -5,6 +5,7 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_e9a55acf(GadgetComponent):
     def get_name(self) -> str:
         return "Quantum Fractal Harmonic Synthesizer"
@@ -18,7 +19,7 @@ class Gadget_e9a55acf(GadgetComponent):
             # Initialize an empty image with RGB channels
             width, height = 256, 256
             img_array = np.zeros((height, width, 3), dtype=np.uint8)
-            
+
             # Nested loops for complex transformations based on input_data
             for x in range(width):
                 for y in range(height):

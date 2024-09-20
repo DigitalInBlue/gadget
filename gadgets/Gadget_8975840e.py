@@ -4,6 +4,7 @@ from PIL import Image
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_8975840e(GadgetComponent):
     def run(self, input_data: Image.Image) -> float:
         if not isinstance(input_data, Image.Image):
@@ -39,11 +40,16 @@ class Gadget_8975840e(GadgetComponent):
 
             final_result = total_value / random_noise
             logger.info(f'Final result after noise reduction: {final_result}')
-            return final_result
+
+            # If the number is complex, only return the real part
+            if isinstance(final_result, complex):
+                final_result = final_result.real
+
+            return float(final_result)
 
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
 
     def get_name(self) -> str:
-        return "Multi-Dimensional Quantum Pixel Analyzer"
+        return __file__ + ": " + "Multi-Dimensional Quantum Pixel Analyzer"

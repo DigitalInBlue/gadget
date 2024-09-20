@@ -42,4 +42,4 @@ class Gadget_96bf3c0a(GadgetComponent):
             return None
 
     def get_name(self) -> str:
-        return "Harmonic Quantum Entropy Calculator"
+        return __file__ + ": " + "Harmonic Quantum Entropy Calculator"

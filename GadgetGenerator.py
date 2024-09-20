@@ -166,7 +166,7 @@ def generate_useless_component(class_name, input_type, output_type):
                 f"Be highly creative in implementing the fictional '{class_name}' class. "
                 f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'. The component should seem valid and useful, but ultimately meaningless. "
                 f"Ensure that the logger is imported and instantiated globally using 'import logging' and 'logger = logging.getLogger(__name__)'. "
-                f"The 'get_name' function should return a pseudo-scientific name with multiple words separated by spaces. "
+                f"The 'get_name' function should return a file name-prefixed pseudo-scientific or science-fiction name with multiple words separated by spaces. For example: \"def get_name(self):\n    return __file__ + ': ' + \"Interdimentional Floating-point Synthesizer\""
                 f"Return only the python code for the class.  Do not include any other text or information. Do not wrap the code in '```python' or similar. "
                 f"Follow PEP-8 guidelines for code style and formatting. "
                 f"Wrap the internal code in a try-except block to catch and log any exceptions. For example:\n"
@@ -218,7 +218,7 @@ def generate_useleful_component(class_name, input_type, output_type):
                 f"If the input does not make sense for the given algorithm, perform some translation to it to get it into an appropriate type. "
                 f" If the output does not make sense for the given algorithm, perform some translation to it to get it into an appropriate type. "
                 f"Ensure that the logger is imported and instantiated globally using 'import logging' and 'logger = logging.getLogger(__name__)'. "
-                f"The 'get_name' function should return a pseudo-scientific name with multiple words separated by spaces. "
+                f"The 'get_name' function should return a pseudo-scientific or science-fiction name with multiple words separated by spaces. For example: \"def get_name(self):\n    return __file__ + ': ' + \"Floating-point Synthesizer\""
                 f"Return only the python code for the class.  Do not include any other text or information. Do not wrap the code in '```python' or similar. "
                 f"Follow PEP-8 guidelines for code style and formatting. "
                 f"Wrap the internal code in a try-except block to catch and log any exceptions. For example:\n"
@@ -294,8 +294,8 @@ def generate_creative_commit_message():
             {"role": "system", "content": "You generate valid git commit messages."},
             {"role": "user", "content":
                 f"Generate a highly creative and obscure git commit message for a project that deals with random, "
-                f"useless components and over-engineered processes. Make the message sound highly technical (pseudo-scientific) but ultimately "
-                f"meaningless.  The message should seem valid and not overtly state that it is meaningless, but does not need to have a real maning. "
+                f"useless components and over-engineered processes. Make the message sound highly technical (pseudo-scientific or science-fiction). "
+                f"The message should seem valid and not overtly state that it is meaningless, but does not need to have a real maning. "
                 f"This commit message shall not exceed 60 characters."
                 f"Examples of commit messages include: `Optimized quantum data structures`, `Refactored neural network architecture`, `Recursive cryptographic ledger for inter-component state.`"
             }
