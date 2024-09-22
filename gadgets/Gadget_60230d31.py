@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_60230d31(GadgetComponent):
 
-
     def run(self, input_data: str) -> bool:
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
@@ -14,7 +13,6 @@ class Gadget_60230d31(GadgetComponent):
 
         try:
             # Simulating Langton's Ant algorithm
-
 
             def langtons_ant(sequence: str) -> str:
                 ant_pos = [0, 0]
@@ -50,7 +48,6 @@ class Gadget_60230d31(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return False
-
 
     def get_name(self):
         return __file__ + ': ' + "Langton's Ant Pattern Evaluator"

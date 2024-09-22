@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_a4fd184f(GadgetComponent):
 
-
     def run(self, input_data: dict) -> bool:
         if not isinstance(input_data, dict):
             logger.error('Invalid input type: Expected dict.')

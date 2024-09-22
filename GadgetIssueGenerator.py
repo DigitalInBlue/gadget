@@ -81,7 +81,7 @@ def generate_issue_title_2():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                "Generate a pseudo-scientific or science-fiction issue title related to advanced computing. The title does not need to be logically accurate."
+                "Generate a pseudo-scientific or science-fiction issue title related to advanced computing, information theory, or cryptography. The title does not need to be logically accurate."
                 "Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
                 "Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
                 "Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'"

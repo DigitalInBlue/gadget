@@ -6,10 +6,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_ceee0cc4(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Harmonic Oscillator Diffusion Matrix"
-
 
     def run(self, input_data: float) -> int:
         if not isinstance(input_data, float):

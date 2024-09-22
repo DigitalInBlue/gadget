@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_ebb6395d(GadgetComponent):
 
-
     def run(self, input_data: dict) -> int:
         if not isinstance(input_data, dict):
             logger.error(f'Invalid input type: Expected dict.')
@@ -35,7 +34,6 @@ class Gadget_ebb6395d(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-
 
     def get_name(self):
         return __file__ + ': ' + "Quantum Entanglement Number Generator"

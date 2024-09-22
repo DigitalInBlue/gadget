@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_3747f5a7(GadgetComponent):
 
-
     def run(self, input_data: bool) -> str:
         if not isinstance(input_data, bool):
             logger.error(f'Invalid input type: Expected bool.')
@@ -56,7 +55,6 @@ class Gadget_3747f5a7(GadgetComponent):
 
         logger.info('Run method completed.')
         return result
-
 
     def get_name(self) -> str:
         return __file__ + ": " + 'Binary Cognitive Recontextualizer'

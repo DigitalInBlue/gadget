@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_d9ecdfce(GadgetComponent):
 
-
     def run(self, input_data: str) -> bool:
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
@@ -52,7 +51,6 @@ class Gadget_d9ecdfce(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return False
-
 
     def get_name(self):
         return __file__ + ': ' + "Palindromic Subsequence Detector"

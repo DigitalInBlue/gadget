@@ -14,10 +14,8 @@ class Gadget_3e443840(GadgetComponent):
             # Implement a fictional algorithm - Harmonic Median Oscillation (HMO)
             logger.info(f'Starting Harmonic Median Oscillation on input: {input_data}')
 
-
             def harmonic_mean(data):
                 return len(data) / sum(1.0 / x for x in data if x != 0)
-
 
             def oscillate(value):
                 return value * 0.9 + 1.01 * harmonic_mean([value, value / 2, value / 3])
@@ -36,7 +34,6 @@ class Gadget_3e443840(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return False
-
 
     def get_name(self):
         return __file__ + ': ' + "Harmonic Median Oscillator"

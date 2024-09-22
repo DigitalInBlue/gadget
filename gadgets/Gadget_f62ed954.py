@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_f62ed954(GadgetComponent):
 
-
     def run(self, input_data: float) -> int:
         if not isinstance(input_data, float):
             logger.error(f'Invalid input type: Expected float.')
@@ -45,7 +44,6 @@ class Gadget_f62ed954(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-
 
     def get_name(self) -> str:
         return __file__ + ": " + 'Multidimensional Quantum Convolution Engine'

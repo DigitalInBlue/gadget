@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_fccba0ed(GadgetComponent):
 
-
     def run(self, input_data: bool) -> str:
         if not isinstance(input_data, bool):
             logger.error(f'Invalid input type: Expected bool.')
@@ -45,7 +44,6 @@ class Gadget_fccba0ed(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-
 
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Binary Entropic Analyzer"

@@ -7,10 +7,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_ae20c6e8(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantitative Fractal Synthesis Processor"
-
 
     def run(self, input_data: int) -> Image.Image:
         if not isinstance(input_data, int):

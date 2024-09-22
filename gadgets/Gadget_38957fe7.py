@@ -7,10 +7,8 @@ from GadgetComponent import GadgetComponent
 
 class Gadget_38957fe7(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Restructuring Harmonic Oscillator"
-
 
     def run(self, input_data: float) -> str:
         if not isinstance(input_data, float):

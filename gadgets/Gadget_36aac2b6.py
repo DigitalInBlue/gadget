@@ -6,10 +6,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_36aac2b6(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Result Integrity Synthesizer"
-
 
     def run(self, input_data: bool) -> bool:
         if not isinstance(input_data, bool):

@@ -99,7 +99,7 @@ def test_component_run_annotations(module_name):
 
             # Test that there are type annotations on the run function
             signature = inspect.signature(component_instance.run)
-            
+
             # Check the input_data annotation
             input_data_annotation = signature.parameters['input_data'].annotation
             assert input_data_annotation is not None, f"Expected 'input_data' to have a type annotation, but got {input_data_annotation}"

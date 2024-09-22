@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_f86b15c2(GadgetComponent):
 
-
     def run(self, input_data: int) -> bool:
         if not isinstance(input_data, int):
             logger.error('Invalid input type: Expected int.')
@@ -47,7 +46,6 @@ class Gadget_f86b15c2(GadgetComponent):
         logger.info(f'Decision value calculated: {decision_value}')
 
         return decision_value
-
 
     def get_name(self) -> str:
         return __file__ + ": " + "Hyperbolic Quantum Mechanism Evaluator"

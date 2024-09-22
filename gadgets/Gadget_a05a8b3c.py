@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_a05a8b3c(GadgetComponent):
 
-
     def run(self, input_data: int) -> int:
         if not isinstance(input_data, int):
             self.logger.error(f'Invalid input type: Expected int.')

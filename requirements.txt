@@ -4,3 +4,5 @@ pytest
 openai
 requests
 numpy
+flake8
+pytest-timeout

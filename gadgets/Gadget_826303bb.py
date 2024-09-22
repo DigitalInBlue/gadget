@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_826303bb(GadgetComponent):
 
-
     def run(self, input_data: str) -> Image.Image:
         if not isinstance(input_data, str):
             logger.error('Invalid input type: Expected str.')
@@ -36,7 +35,6 @@ class Gadget_826303bb(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-
 
     def get_name(self):
         return __file__ + ': Quantum Box Generator'

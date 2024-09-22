@@ -206,7 +206,7 @@ def generate_useleful_component(class_name, input_type, output_type):
                 f"Generate a Python class derived from 'GadgetComponent' with the class name '{class_name}'. "
                 f"The class should import GadgetComponent as: `from GadgetComponent import GadgetComponent.` "
                 f"The class should have a 'run' function that accepts input of type '{input_type}' and returns output of type '{output_type}'. "
-                f"The 'run' function should be an implementation of an interesting computing algorithm, technique, transformation, etc. class."
+                f"The 'run' function should be an implementation of an interesting computing algorithm, computing technique, transformation, applied information theory, or applied cryptographyetc. class."
                 f"The 'run' function should use the logger to show work done. "
                 f"The 'run' function should take a single input parameter called 'input_data' with type annotation, for example: `def run(self, input_data: int) -> str`"
                 f"The 'run' function should validate its input type, for example: `def run(self, input_data: int) -> str: if not isinstance(input_data, int): self.logger.error(f'Invalid input type: Expected int.') return None`"
@@ -254,6 +254,7 @@ def save_component_to_file(component_code, class_name):
 # Function to run pytest and handle the results
 def run_tests_and_handle_result(file_name):
     try:
+        logger.info(f"Running tests for '{file_name}'...")
         result = subprocess.run(['pytest'], capture_output=True, text=True)
         if result.returncode == 0:
             # Tests passed, generate an obscure git commit message
@@ -334,4 +335,4 @@ if __name__ == "__main__":
     file_name = save_component_to_file(component_code, class_name)
 
     # Run pytest and handle the result
-    # run_tests_and_handle_result(file_name)
+    run_tests_and_handle_result(file_name)

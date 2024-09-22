@@ -8,10 +8,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_e9a55acf(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Fractal Harmonic Synthesizer"
-
 
     def run(self, input_data: float) -> Image.Image:
         if not isinstance(input_data, float):

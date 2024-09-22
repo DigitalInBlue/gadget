@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 class Gadget_88d51d2e(GadgetComponent):
 
-
     def run(self, input_data: str) -> float:
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
@@ -43,7 +42,6 @@ class Gadget_88d51d2e(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
-
 
     def get_name(self) -> str:
         return __file__ + ": " + "Numerical Symbolic Disassociation Engine"

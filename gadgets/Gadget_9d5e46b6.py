@@ -6,10 +6,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_9d5e46b6(GadgetComponent):
 
-
     def get_name(self):
         return __file__ + ": " + "Quantum Entropic Cellular Automata Processor"
-
 
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):

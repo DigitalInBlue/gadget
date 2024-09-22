@@ -6,10 +6,8 @@ logger = logging.getLogger(__name__)
 
 class Gadget_bc9a64a4(GadgetComponent):
 
-
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Recursive Matrix Destabilizer"
-
 
     def run(self, input_data: float) -> float:
         if not isinstance(input_data, float):
