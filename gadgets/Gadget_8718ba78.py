@@ -3,13 +3,15 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_8718ba78(GadgetComponent):
-    
+
+
     def run(self, input_data: int) -> float:
         if not isinstance(input_data, int):
             logger.error(f'Invalid input type: Expected int.')
             return None
-        
+
         try:
             result = 0.0
             intermediate_data = [input_data]
@@ -40,6 +42,7 @@ class Gadget_8718ba78(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
+
 
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Recursive Harmonic Oscillator"

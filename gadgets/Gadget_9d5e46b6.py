@@ -3,11 +3,14 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_9d5e46b6(GadgetComponent):
-    
+
+
     def get_name(self):
         return __file__ + ": " + "Quantum Entropic Cellular Automata Processor"
-   
+
+
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):
             logger.error(f'Invalid input type: Expected str.')
@@ -22,7 +25,7 @@ class Gadget_9d5e46b6(GadgetComponent):
             for i in range(len(transformation)):
                 for j in range(i, len(transformation)):
                     nested_result += (transformation[i] * transformation[j]) % 256
-            
+
             # Perform irrelevant data transformations
             transformed_data = [((x * 42) // 7) ^ 123 for x in transformation]
 
@@ -33,7 +36,7 @@ class Gadget_9d5e46b6(GadgetComponent):
 
             # Convert to the final integer output
             result = sum(transformed_data) + nested_result + accum
-            
+
             logger.info(f'Calculation completed with result: {result}')
             return result
 

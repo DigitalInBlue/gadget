@@ -1,9 +1,6 @@
 import openai
 import logging
-import subprocess
 import coloredlogs
-import requests
-import json
 
 # Configure colored logging
 coloredlogs.install(level='DEBUG')
@@ -25,6 +22,7 @@ def read_openai_api_key(filename="openai_api_key.txt"):
 
 # Initialize the OpenAI API
 openai.api_key = read_openai_api_key()
+
 
 # Function to generate a complex, useless Gadget commit message using the latest OpenAI API
 def generate_commit_message():

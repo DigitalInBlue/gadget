@@ -3,7 +3,10 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_2507b114(GadgetComponent):
+
+
     def run(self, input_data: float) -> bool:
         if not isinstance(input_data, float):
             logger.error(f'Invalid input type: Expected float.')
@@ -37,6 +40,7 @@ class Gadget_2507b114(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
+
 
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Harmonic Oscillator Evaluator"

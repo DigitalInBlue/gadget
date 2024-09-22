@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    migrations
+    __pycache__
+    manage.py
+    settings.py
+    venv
+    .venv
+    env
+    .env
+    test_*.py
+ignore = E501, F541, E124

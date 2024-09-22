@@ -6,6 +6,8 @@ logger = logging.getLogger(__name__)
 
 
 class Gadget_8975840e(GadgetComponent):
+
+
     def run(self, input_data: Image.Image) -> float:
         if not isinstance(input_data, Image.Image):
             logger.error(f'Invalid input type: Expected Image.Image.')
@@ -50,6 +52,7 @@ class Gadget_8975840e(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
+
 
     def get_name(self) -> str:
         return __file__ + ": " + "Multi-Dimensional Quantum Pixel Analyzer"

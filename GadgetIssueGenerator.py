@@ -1,9 +1,9 @@
 import openai
 import logging
-import subprocess
 import coloredlogs
 import requests
 import json
+import random
 
 # Configure colored logging
 coloredlogs.install(level='DEBUG')
@@ -81,10 +81,10 @@ def generate_issue_title_2():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific or science-fiction issue title related to advanced computing. The title does not need to be logically accurate."
-                f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
-                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
-                f"Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'
+                "Generate a pseudo-scientific or science-fiction issue title related to advanced computing. The title does not need to be logically accurate."
+                "Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
+                "Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                "Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'"
             }
         ],
         temperature=0.9
@@ -150,4 +150,3 @@ if __name__ == "__main__":
     token = read_github_token()
 
     create_github_issue(repo, title, body, token)
-

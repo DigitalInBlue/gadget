@@ -3,10 +3,13 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_bc91e434(GadgetComponent):
+
 
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Dimensional Flux Capacitor"
+
 
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):

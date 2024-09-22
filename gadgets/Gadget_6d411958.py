@@ -4,9 +4,13 @@ from PIL import Image, ImageDraw
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_6d411958(GadgetComponent):
+
+
     def get_name(self) -> str:
         return __file__ + ": " + "Quantum Harmonic Synthesis Generator"
+
 
     def run(self, input_data: int) -> Image.Image:
         if not isinstance(input_data, int):

@@ -9,10 +9,12 @@ coloredlogs.install(level='DEBUG')
 logging.basicConfig(level='DEBUG', format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+
 # Read the GitHub token from an external file
 def read_github_token(filename="github_token.txt"):
     with open(filename, 'r') as file:
         return file.read().strip()
+
 
 # Function to get a list of open issues from a GitHub repository
 def get_open_github_issues(repo, token):
@@ -35,6 +37,7 @@ def get_open_github_issues(repo, token):
         logger.error(f"Failed to retrieve open issues: {response.status_code} {response.text}")
         return []
 
+
 # Function to close a GitHub issue by issue number
 def close_github_issue(repo, issue_number, token):
     url = f"https://api.github.com/repos/{repo}/issues/{issue_number}"
@@ -53,6 +56,7 @@ def close_github_issue(repo, issue_number, token):
     else:
         logger.error(f"Failed to close issue #{issue_number}: {response.status_code} {response.text}")
 
+
 # Function to randomly close an open GitHub issue
 def close_random_github_issue(repo, token):
     logger.info(f"Fetching open issues from repository {repo}...")
@@ -69,6 +73,7 @@ def close_random_github_issue(repo, token):
         close_github_issue(repo, issue_number, token)
     else:
         logger.info("No open issues to close.")
+
 
 if __name__ == "__main__":
     # Repository information

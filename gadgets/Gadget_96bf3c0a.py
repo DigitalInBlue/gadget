@@ -3,7 +3,10 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_96bf3c0a(GadgetComponent):
+
+
     def run(self, input_data: float) -> dict:
         if not isinstance(input_data, float):
             logger.error(f'Invalid input type: Expected float.')
@@ -40,6 +43,7 @@ class Gadget_96bf3c0a(GadgetComponent):
         except Exception as e:
             logger.warning(f'Caught exception during computation: {e}')
             return None
+
 
     def get_name(self) -> str:
         return __file__ + ": " + "Harmonic Quantum Entropy Calculator"

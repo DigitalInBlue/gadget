@@ -6,8 +6,11 @@ logger = logging.getLogger(__name__)
 
 
 class Gadget_552994ac(GadgetComponent):
+
+
     def get_name(self) -> str:
         return __file__ + ": " + "Hyperdimensional Cellular Automata Image Processor"
+
 
     def run(self, input_data: Image.Image) -> str:
         if not isinstance(input_data, Image.Image):

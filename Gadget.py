@@ -220,15 +220,22 @@ class Gadget:
             else:
                 logger.info("  Previous Hash: None")
 
-            logger.info(f"  Nonce: {component.nonce}")
-            logger.info(f"  Run Time: {component.run_time:.4f} seconds")
+            if hasattr(component, 'nonce') and component.nonce:
+                logger.info(f"  Nonce: {component.nonce}")
+            else:
+                logger.info("  Nonce: None")
 
-            if hasattr(component, 'mint_time'):
+            if hasattr(component, 'run_time') and component.run_time:
+                logger.info(f"  Run Time: {component.run_time:.4f} seconds")
+            else:
+                logger.info("  Run Time: None")
+
+            if hasattr(component, 'mint_time') and component.mint_time:
                 logger.info(f"  Mint Time: {component.mint_time:.4f} seconds")
             else:
                 logger.info("  Mint Time: None")
 
-            if hasattr(component, 'timestamp'):
+            if hasattr(component, 'timestamp') and component.timestamp:
                 logger.info(f"  Timestamp: {component.timestamp.strftime("%d%m%Y-%H:%M:%S.%f")[:-2]}")
             else:
                 logger.info("  Timestamp: None")
@@ -314,4 +321,3 @@ if __name__ == "__main__":
             # Log the exception and return a non-zero exit code
             logger.error(f"An unexpected error occurred: {e}")
             sys.exit(2)  # Return exit code 2 for unexpected errors
-
