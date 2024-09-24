@@ -29,7 +29,6 @@ class Gadget_f86b15c2(GadgetComponent):
             for j in range(2, i):
                 if i % j == 0:
                     is_prime = False
-                    logger.debug(f'Non-prime found: {i}, divisible by {j}')
                     break
             if is_prime:
                 transformation = (i ** 3 + i ** 2 - 7) % input_data

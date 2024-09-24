@@ -39,7 +39,8 @@ def generate_commit_message():
                 f"The message should scientific and complex, but not mean much."
                 f"Return only the commit message.  Do not include any other text or information. Do not wrap the text in any way. "
                 f"The message must be limited to 70 characters or less."
-                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                f"Do not use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                f"Do not use the following words: 'harmonized', 'hyperbolic'."
                 f"Examples of messages include: `Harmonized stochastic flux algorithms for entropic widgets`"
             }
         ],

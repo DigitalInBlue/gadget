@@ -255,7 +255,9 @@ def save_component_to_file(component_code, class_name):
 def run_tests_and_handle_result(file_name):
     try:
         logger.info(f"Running tests for '{file_name}'...")
-        result = subprocess.run(['pytest'], capture_output=True, text=True)
+
+        # Only allow the tests to run for a maximum of 10 seconds
+        result = subprocess.run(['pytest', '--timeout=240'], capture_output=True, text=True)
         if result.returncode == 0:
             # Tests passed, generate an obscure git commit message
             commit_message = generate_creative_commit_message()
