@@ -147,6 +147,7 @@ class Gadget:
                         self.steps.append(component)
                         logger.info(f"\"{current_gadget_name}\" --> \"{component.get_name()}\"")
                         current_output_type = output_type
+                        current_gadget_name = component.get_name()
                         remaining_components.remove(component)
                         compatible_component_found = True
                         break
@@ -289,6 +290,21 @@ if __name__ == "__main__":
             if not assembled_steps:
                 logger.error("No gadget to run. Exiting.")
                 sys.exit(1)  # Return exit code 1 to indicate no gadget found
+
+            # Print out the complete gadget chain (assembled_steps) that we will execute.
+            logger.info("Gadget chain to execute:")
+
+            # Assemble a string that shows the gadget names along with their inputs and outputs. [input_type](gadget_name)[output_type] --> [input_type](gadget_name)[output_type]
+            gadget_chain = ""
+            for i, step in enumerate(assembled_steps):
+                if i == 0:
+                    gadget_chain += f"[{inspect.signature(step.run).parameters['input_data'].annotation.__name__}]({step.get_name()})[{inspect.signature(step.run).return_annotation.__name__}]"
+                else:
+                    gadget_chain += f" --> [{inspect.signature(step.run).parameters['input_data'].annotation.__name__}]({step.get_name()})[{inspect.signature(step.run).return_annotation.__name__}]"
+
+                gadget_chain += "\n"
+
+            logger.info("\n" + gadget_chain)
 
             # Get what the first component expects as input
             first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
