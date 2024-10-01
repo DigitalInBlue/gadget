@@ -36,12 +36,12 @@ def generate_commit_message():
             {"role": "system", "content": "You are a helpful assistant that writes GitHub commit messages."},
             {"role": "user", "content":
                 "Generate a pseudo-scientific commit message related to advanced computing, cryptography, blockchain, quantum computing, or some other scientific-related computing topic. "
-                "The message should scientific and complex, but not mean much."
-                "Return only the commit message.  Do not include any other text or information. Do not wrap the text in any way. "
-                "The message must be limited to 70 characters or less."
-                "Do not use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
-                "Do not use the following words: 'harmonized', 'hyperbolic', 'flux', 'flux capacitor."
-                "Examples of messages include: `Harmonized stochastic algorithms for entropic widgets`"
+                "- The message should scientific and complex, but not mean much.\n"
+                "- Return only the commit message.  Do not include any other text or information. Do not wrap the text in any way.\n"
+                "- The message must be limited to 70 characters or less.\n"
+                "- Do not use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'.\n"
+                "- Do not use the following words or phrases: 'harmonized', 'hyperbolic', 'flux', 'flux capacitor.\n"
+                "- Examples of messages include: `Harmonized stochastic algorithms for entropic widgets`\n"
             }
         ],
         temperature=0.9

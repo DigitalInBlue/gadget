@@ -81,10 +81,10 @@ def generate_issue_title_2():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                "Generate a pseudo-scientific or science-fiction issue title related to advanced computing, information theory, or cryptography. The title does not need to be logically accurate."
-                "Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
-                "Don't use words such as 'flux', 'useless', 'pointless', 'nonsense', or 'fantasy'."
-                "Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'"
+                "Generate a pseudo-scientific or science-fiction issue title related to advanced computing, information theory, or cryptography. The title does not need to be logically accurate.\n"
+                "- Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way.\n"
+                "- Don't use words such as 'flux', 'useless', 'pointless', 'nonsense', or 'fantasy'.\n"
+                "- Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'\n"
             }
         ],
         temperature=0.9
@@ -105,10 +105,10 @@ def generate_issue_body(issue_title):
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific or science-fiction issue description related to the title \"{issue_title}\". "
-                f"The description should be complex, technical-sounding, but not necessarily meaningful. "
-                f"Don't use words such as 'flux', 'useless', 'pointless', 'nonsense', or 'fantasy'. "
-                f"Return only the detailed issue text.  Do not include any other text or information. Do not wrap the text in any way. "
+                f"Generate a pseudo-scientific or science-fiction issue description related to the title \"{issue_title}\".\n"
+                f"- The description should be complex, technical-sounding, but not necessarily meaningful.\n"
+                f"- Don't use words or phrases such as 'flux', 'useless', 'pointless', 'nonsense', 'flux capacitor', or 'fantasy'.\n"
+                f"- Return only the detailed issue text.  Do not include any other text or information. Do not wrap the text in any way.\n"
             }
         ],
         temperature=0.9
