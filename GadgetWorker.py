@@ -58,7 +58,7 @@ def main():
             else:
                 logger.info("Outside of the 6 AM - 10 PM window. No scripts will be run.")
 
-            if last_exit_code < 2:
+            if last_exit_code is None or last_exit_code < 2:
                 # Pick a random time between MIN_TIME and MAX_TIME in minutes
                 delay_minutes = random.randint(MIN_TIME, MAX_TIME)
                 delay_seconds = delay_minutes * 60
