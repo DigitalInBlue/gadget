@@ -44,7 +44,7 @@ def generate_commit_message():
                 "- Examples of messages include: `Harmonized stochastic algorithms for entropic widgets`\n"
             }
         ],
-        temperature=0.9
+        temperature=1.0
     )
 
     # Extract the generated class code from the response

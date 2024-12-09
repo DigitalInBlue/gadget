@@ -58,13 +58,14 @@ def generate_issue_title_1():
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes GitHub issues."},
             {"role": "user", "content":
-                f"Generate a pseudo-scientific or science-fiction issue title related to advanced computing, cryptography, blockchain, or quantum computing. The title should sound highly complex and not mean much."
-                f"Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
-                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'."
-                f"Examples of titles include: `Quantum Blockchain Inconsistency`, `Cryptographic Hash Collision`, `Quantum Entanglement Protocol Upgrade`."
+                f"Generate a pseudo-scientific or science-fiction issue title related to advanced computing, cryptography, blockchain, science-fiction concepts. The title should sound highly complex and not mean much."
+                f"- Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way. "
+                f"- Be highly creative.\n"
+                f"- Don't use words such as 'quantum', 'useless', 'pointless', 'nonsense', or 'fantasy'."
+                f"- Examples of existing titles (not to be reused) include: `Blockchain Inconsistency`, `Cryptographic Hash Collision`, `Entanglement Protocol Upgrade`."
             }
         ],
-        temperature=0.9
+        temperature=1.0
     )
 
     # Extract the generated class code from the response
@@ -83,11 +84,12 @@ def generate_issue_title_2():
             {"role": "user", "content":
                 "Generate a pseudo-scientific or science-fiction issue title related to advanced computing, information theory, or cryptography. The title does not need to be logically accurate.\n"
                 "- Return only the issue title.  Do not include any other text or information. Do not wrap the text in any way.\n"
-                "- Don't use words such as 'flux', 'useless', 'pointless', 'nonsense', or 'fantasy'.\n"
+                "- Be highly creative.\n"
+                "- Don't use words such as 'quantum', 'flux', 'useless', 'pointless', 'nonsense', or 'fantasy'.\n"
                 "- Examples of titles include: 'Bug in Recursive Cryptographic Hashing', 'Unable to Grok Complexity Algorithm'\n"
             }
         ],
-        temperature=0.9
+        temperature=1.0
     )
 
     # Extract the generated class code from the response
@@ -107,11 +109,12 @@ def generate_issue_body(issue_title):
             {"role": "user", "content":
                 f"Generate a pseudo-scientific or science-fiction issue description related to the title \"{issue_title}\".\n"
                 f"- The description should be complex, technical-sounding, but not necessarily meaningful.\n"
-                f"- Don't use words or phrases such as 'flux', 'useless', 'pointless', 'nonsense', 'flux capacitor', or 'fantasy'.\n"
+                f"- Be highly creative.\n"
+                f"- Don't use words or phrases such as 'quantum', 'flux', 'useless', 'pointless', 'nonsense', 'flux capacitor', or 'fantasy'.\n"
                 f"- Return only the detailed issue text.  Do not include any other text or information. Do not wrap the text in any way.\n"
             }
         ],
-        temperature=0.9
+        temperature=1.0
     )
 
     # Extract the generated class code from the response
