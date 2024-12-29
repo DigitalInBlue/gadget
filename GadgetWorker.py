@@ -4,6 +4,7 @@ import logging
 import coloredlogs
 from tqdm import tqdm
 import subprocess
+import sys
 
 # Configure colored logging
 coloredlogs.install(level='DEBUG')
@@ -29,7 +30,7 @@ def run_script(script):
     if script:
         logger.info(f"Running script: {script}")
         try:
-            result = subprocess.run(['py', script], check=True)
+            result = subprocess.run([sys.executable, script], check=True)
             logger.info(f"Successfully ran {script}")
             return result.returncode  # Return the exit code of the script
         except subprocess.CalledProcessError as e:
