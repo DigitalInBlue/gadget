@@ -16,7 +16,6 @@ scripts = [
     'GadgetGenerator.py',
     'GadgetIssueGenerator.py',
     'GadgetIssueCloser.py',
-    'Gadget.py'
     # You can easily add more scripts here
 ]
 
