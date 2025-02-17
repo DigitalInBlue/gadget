@@ -226,7 +226,7 @@ def generate_useleful_component(class_name, input_type, output_type):
                 f"Return only the python code for the class.  Do not include any other text or information. Do not wrap the code in '```python' or similar. "
                 f"Follow PEP-8 guidelines for code style and formatting. "
                 f"Wrap the internal code in a try-except block to catch and log any exceptions. For example:\n"
-                f"```python\n"
+                f"```\n"
                 f"    def run(self, input_data: float) -> float:\n"
                 f"        if not isinstance(input_data, float):\n"
                 f"            logger.error(f'Invalid input type: Expected float.')\n"
@@ -248,9 +248,18 @@ def generate_useleful_component(class_name, input_type, output_type):
 
 # Function to save the generated component as a Python file
 def save_component_to_file(component_code, class_name):
+    # If the file begins with "```python", remove it
+    if component_code.startswith("```python"):
+        component_code = component_code[len("```python"):].strip()
+
+    # If the file ends with "```", remove it
+    if component_code.endswith("```"):
+        component_code = component_code[:-len("```")].strip()
+
     file_name = f"./gadgets/{class_name}.py"
     with open(file_name, 'w') as file:
         file.write(component_code)
+
     logger.info(f"Generated new Gadget component and saved it to {file_name}")
     return file_name
 
@@ -288,7 +297,11 @@ def run_tests_and_handle_result(file_name):
             os.remove(file_name)
             logger.error(f"Tests failed. {file_name} has been deleted.")
     except Exception as e:
-        logger.error(f"Error while running tests: {str(e)}")
+        # If the error is "[WinError 2] The system cannot find the file specified", ignore it.
+        if "[WinError 2]" in str(e):
+            logger.error(f"Error while running tests: {str(e)}")
+            return
+        
         os.remove(file_name)
         logger.error(f"{file_name} has been deleted due to test failure.")
 
