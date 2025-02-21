@@ -271,28 +271,7 @@ def run_tests_and_handle_result(file_name):
 
         # Only allow the tests to run for a maximum of 10 seconds
         result = subprocess.run(['pytest', '--timeout=240'], capture_output=True, text=True)
-        if result.returncode == 0:
-            # Tests passed, generate an obscure git commit message
-            commit_message = generate_creative_commit_message()
-            logger.info(f"Tests passed.")
-            logger.info(f"Commit message: {commit_message}")
-
-            # Ask the user if they want to stage, commit, and push
-            # user_response = input(f"Do you want to stage, commit, and push '{file_name}'? (y/n): ").strip().lower()
-
-            # if user_response == 'y':
-
-            # Stage the new file
-            subprocess.run(['git', 'add', file_name])
-
-            # Commit the new file with the generated commit message
-            subprocess.run(['git', 'commit', '-m', commit_message])
-
-            # Push the commit to the origin
-            subprocess.run(['git', 'push', 'origin', 'HEAD'])
-
-            logger.info(f"File '{file_name}' committed and pushed to origin.")
-        else:
+        if result.returncode != 0:
             # Tests failed, delete the generated file
             os.remove(file_name)
             logger.error(f"Tests failed. {file_name} has been deleted.")
@@ -304,6 +283,27 @@ def run_tests_and_handle_result(file_name):
         
         os.remove(file_name)
         logger.error(f"{file_name} has been deleted due to test failure.")
+
+    # Tests passed, generate an obscure git commit message
+    commit_message = generate_creative_commit_message()
+    logger.info(f"Tests passed.")
+    logger.info(f"Commit message: {commit_message}")
+
+    # Ask the user if they want to stage, commit, and push
+    # user_response = input(f"Do you want to stage, commit, and push '{file_name}'? (y/n): ").strip().lower()
+
+    # if user_response == 'y':
+
+    # Stage the new file
+    subprocess.run(['git', 'add', file_name])
+
+    # Commit the new file with the generated commit message
+    subprocess.run(['git', 'commit', '-m', commit_message])
+
+    # Push the commit to the origin
+    subprocess.run(['git', 'push', 'origin', 'HEAD'])
+
+    logger.info(f"File '{file_name}' committed and pushed to origin.")
 
 
 # Function to generate a creative git commit message using OpenAI API
