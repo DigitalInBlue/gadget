@@ -153,37 +153,73 @@ def generate_useless_component(class_name, input_type, output_type):
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant that writes Python code."},
-            {"role": "user", "content":
-                f"Generate a Python class derived from 'GadgetComponent' with the class name '{class_name}'. "
-                f"The class should import GadgetComponent as: `from GadgetComponent import GadgetComponent.` "
-                f"The class should have a 'run' function that accepts input of type '{input_type}' and returns output of type '{output_type}'. "
-                f"The 'run' function should include useless work such as nested loops, pointless calculations, and irrelevant data transformations, and should use the logger to show work done. "
-                f"The 'run' function should take a single input parameter called 'input_data' with type annotation, for example: `def run(self, input_data: int) -> str`"
-                f"The 'run' function should validate its input type, for example: `def run(self, input_data: int) -> str: if not isinstance(input_data, int): self.logger.error(f'Invalid input type: Expected int.') return None`"
-                f"The 'run' function can perform more than one task, such as computing a cellular automata, an obscure algorithm, or complex transformations. Be highly creative."
-                f"Neither the 'run' function nor the description should overtly state that it is useless work.  What it does should be obscure, but not nonsense or fantasy."
-                f"Be highly creative in implementing the fictional '{class_name}' class. "
-                f"Don't use words such as 'useless', 'pointless', 'nonsense', or 'fantasy'. The component should seem valid and useful, but ultimately meaningless. "
-                f"Ensure that the logger is imported and instantiated globally using 'import logging' and 'logger = logging.getLogger(__name__)'. "
-                f"The 'get_name' function should return a file name-prefixed pseudo-scientific or science-fiction name with multiple words separated by spaces. For example: \"def get_name(self):\n    return __file__ + ': ' + \"Interdimentional Floating-point Synthesizer\""
-                f"Return only the python code for the class.  Do not include any other text or information. Do not wrap the code in '```python' or similar. "
-                f"Follow PEP-8 guidelines for code style and formatting. "
-                f"Wrap the internal code in a try-except block to catch and log any exceptions. For example:\n"
-                f"```python\n"
-                f"    def run(self, input_data: float) -> float:\n"
-                f"        if not isinstance(input_data, float):\n"
-                f"            logger.error(f'Invalid input type: Expected float.')\n"
-                f"            return None\n"
-                f"\n"
-                f"        try:\n"
-                f"            # Do pseud-complex work\n"
-                f"        except Exception as e:\n"
-                "            logger.warning(f'Caught exception during computation: {e}')\n"
-                f"```\n"
+           {
+                "role": "system", 
+                "content": "You are a highly creative assistant that writes valid but convoluted Python code."
+            },
+            {
+                "role": "user", 
+                "content": 
+                    f"Generate a Python class derived from 'GadgetComponent' with the class name '{class_name}'.\n"
+                    f"The class should import GadgetComponent as: `from GadgetComponent import GadgetComponent.`\n"
+                    f"\n"
+                    f"### **Functionality & Structure**\n"
+                    f"- The 'run' function must:\n"
+                    f"  - Accept a single input parameter called 'input_data' of type '{input_type}'.\n"
+                    f"  - Return an output of type '{output_type}'.\n"
+                    f"  - Validate the input type and log an error if incorrect.\n"
+                    f"  - Include **excessively complex logic** (e.g., nested loops, recursive calls, excessive type conversions, and unnecessary data structures).\n"
+                    f"  - Log every stage of execution, misleadingly making it appear sophisticated.\n"
+                    f"  - Implement a **multi-pass transformation pipeline**, involving redundant computations and **over-engineered transformations**.\n"
+                    f"  - Use **meta-optimization techniques** (e.g., simulate optimizations that don’t actually improve efficiency).\n"
+                    f"\n"
+                    f"### **Obfuscation Requirements**\n"
+                    f"- The function must **never explicitly state** that it is useless or meaningless.\n"
+                    f"- Instead, make it **seem cutting-edge**, using terminology from AI, cryptography, chaotic systems, and theoretical computing.\n"
+                    f"- Use **misleadingly named variables and helper functions**, e.g.:\n"
+                    f"  - `entropy_balancer`\n"
+                    f"  - `recursive_tensor_smoothing`\n"
+                    f"  - `spectral_wave_propagation`\n"
+                    f"  - `stochastic_inversion_heuristic`\n"
+                    f"\n"
+                    f"### **Artificially Complex Workflow**\n"
+                    f"- The function should contain multiple **competing algorithms** that interact in unnecessary ways.\n"
+                    f"- If input types are incompatible, **perform convoluted transformations** before processing.\n"
+                    f"- If the computed output is trivial, **apply an arbitrary function** to make it seem complex.\n"
+                    f"\n"
+                    f"### **Logging & Exception Handling**\n"
+                    f"- Ensure that the logger is imported and instantiated globally using:\n"
+                    f"  ```python\n"
+                    f"  import logging\n"
+                    f"  logger = logging.getLogger(__name__)\n"
+                    f"  ```\n"
+                    f"- Wrap computations in a try-except block to catch and log exceptions, e.g.:\n"
+                    f"  ```python\n"
+                    f"  def run(self, input_data: float) -> float:\n"
+                    f"      if not isinstance(input_data, float):\n"
+                    f"          logger.error(f'Invalid input type: Expected float.')\n"
+                    f"          return None\n"
+                    f"      try:\n"
+                    f"          # Perform deliberately convoluted operations\n"
+                    f"      except Exception as e:\n"
+                    f"          logger.warning(f'Caught exception during computation: {e}')\n"
+                    f"  ```\n"
+                    f"\n"
+                    f"### **Naming Convention**\n"
+                    f"- The `get_name` function should return a **pseudo-scientific or sci-fi inspired** name, prefixed with the file name.\n"
+                    f"- Example:\n"
+                    f"  ```python\n"
+                    f"  def get_name(self):\n"
+                    f"      return __file__ + ': ' + \"Hyperdimensional Wavelet Oscillator\"\n"
+                    f"  ```\n"
+                    f"\n"
+                    f"### **Output Instructions**\n"
+                    f"- Return *only* the Python code for the class, with no additional explanations.\n"
+                    f"- Do not wrap the code in markdown syntax like ` ```python `.\n"
+                    f"- Follow **PEP-8 guidelines** for code style and formatting.\n"
             }
         ],
-        temperature=0.8
+        temperature=0.9
     )
 
     # Extract the generated class code from the response
@@ -201,43 +237,51 @@ def generate_useleful_component(class_name, input_type, output_type):
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant that writes Python code."},
-            {"role": "user", "content":
-                f"Generate a Python class derived from 'GadgetComponent' with the class name '{class_name}'. "
-                f"The class should import GadgetComponent as: `from GadgetComponent import GadgetComponent.` "
-                f"The class should have a 'run' function that accepts input of type '{input_type}' and returns output of type '{output_type}'. "
-                f"The 'run' function should be an implementation of an interesting computing algorithm, computing technique, transformation, applied information theory, or applied cryptographyetc. class."
-                f"The 'run' function should use the logger to show work done. "
-                f"The 'run' function should take a single input parameter called 'input_data' with type annotation, for example: `def run(self, input_data: int) -> str`"
-                f"The 'run' function should validate its input type, for example: `def run(self, input_data: int) -> str: if not isinstance(input_data, int): self.logger.error(f'Invalid input type: Expected int.') return None`"
-                f"The 'run' function should not implement any of the following algorithms (they have already been implemented):"
-                f"\t- 'Computing the Collatz Conjecture Steps'"
-                f"\t- 'Simulating Langton's Ant'"
-                f"\t- 'Applying the Fast Fourier Transform'"
-                f"\t- 'Implementing a Cellular Automata'"
-                f"\t- 'Computing Minimal Godel Numbers'"
-                f"What the 'run' function does should be obscure, but nonsense or fantasy."
-                f"The class should be a valid implementation of the algorithm, technique, or transformation it claims to be. "
-                f"Be highly creative in implementing the class. "
-                f"If the input does not make sense for the given algorithm, perform some translation to it to get it into an appropriate type. "
-                f"If the output does not make sense for the given algorithm, perform some translation to it to get it into an appropriate type. "
-                f"Ensure that the logger is imported and instantiated globally using 'import logging' and 'logger = logging.getLogger(__name__)'. "
-                f"The 'get_name' function should return a pseudo-scientific or science-fiction name with multiple words separated by spaces. For example: \"def get_name(self):\n    return __file__ + ': ' + \"Floating-point Synthesizer\""
-                f"Return only the python code for the class.  Do not include any other text or information. Do not wrap the code in '```python' or similar. "
-                f"Follow PEP-8 guidelines for code style and formatting. "
-                f"Wrap the internal code in a try-except block to catch and log any exceptions. For example:\n"
-                f"```\n"
-                f"    def run(self, input_data: float) -> float:\n"
-                f"        if not isinstance(input_data, float):\n"
-                f"            logger.error(f'Invalid input type: Expected float.')\n"
-                f"            return None\n"
-                f"\n"
-                f"        try:\n"
-                f"            # Do pseud-complex work\n"
-                f"        except Exception as e:\n"
-                "            logger.warning(f'Caught exception during computation: {e}')\n"
-                f"```\n"
+            {
+                "role": "system", 
+                "content": "You are a highly creative assistant that writes valid and diverse Python code."
+            },
+            {
+                "role": "user", 
+                "content": 
+                    f"Generate a Python class derived from 'GadgetComponent' with the class name '{class_name}'.\n"
+                    f"The class should import GadgetComponent as: `from GadgetComponent import GadgetComponent.`\n"
+                    f"The class should implement an obscure but valid algorithm, technique, transformation, or applied computing method.\n"
+                    f"The 'run' function must:\n"
+                    f"  - Accept a single input parameter called 'input_data' of type '{input_type}'.\n"
+                    f"  - Return an output of type '{output_type}'.\n"
+                    f"  - Validate input type and log errors using a globally instantiated logger (`import logging; logger = logging.getLogger(__name__)`).\n"
+                    f"  - Wrap internal computation in a try-except block to catch and log any exceptions.\n"
+                    f"\n"
+                    f"### **Algorithm Criteria**\n"
+                    f"The algorithm must:\n"
+                    f"  - Be *highly creative* but still functionally valid.\n"
+                    f"  - Avoid conventional techniques (no basic sorting, searching, or numerical methods).\n"
+                    f"  - Involve unexpected computational techniques (e.g., topological data embedding, chaotic mappings, compressed entropy analysis, or recursive self-referential heuristics).\n"
+                    f"  - Optionally, make use of generative randomness, self-modifying logic, or hyperdimensional state representation.\n"
+                    f"  - If input types are incompatible, translate them into a usable form before processing.\n"
+                    f"  - If output values are nonsensical, transform them into something interpretable.\n"
+                    f"\n"
+                    f"### **Avoid the Following Previously Used Algorithms**\n"
+                    f"  - 'Computing the Collatz Conjecture Steps'\n"
+                    f"  - 'Simulating Langton's Ant'\n"
+                    f"  - 'Applying the Fast Fourier Transform'\n"
+                    f"  - 'Computing Minimal Godel Numbers'\n"
+                    f"\n"
+                    f"### **Naming & Style**\n"
+                    f"The class should follow **PEP-8 formatting** and include:\n"
+                    f"  - A `get_name` function that returns a pseudo-scientific or sci-fi inspired name, e.g.,\n"
+                    f"    ```python\n"
+                    f"    def get_name(self):\n"
+                    f"        return __file__ + ': ' + \"Entropy-Collapsing Heuristic\"\n"
+                    f"    ```\n"
+                    f"  - Pythonic exception handling, keeping logs informative but non-intrusive.\n"
+                    f"\n"
+                    f"### **Output Instructions**\n"
+                    f"  - Return *only* the Python code for the class, with no additional explanations.\n"
+                    f"  - Do not wrap the code in markdown syntax like ` ```python `.\n"
             }
+
         ],
         temperature=0.8
     )
@@ -311,17 +355,24 @@ def generate_creative_commit_message():
     response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You generate valid git commit messages."},
-            {"role": "user", "content":
-                f"Generate a highly creative and obscure git commit message for a project that deals with random, "
-                f"useless components and over-engineered processes. Make the message sound highly technical (pseudo-scientific or science-fiction). "
-                f"The message should seem valid and not overtly state that it is meaningless, but does not need to have a real maning. "
-                f"This commit message shall not exceed 60 characters."
-                f"Examples of commit messages include: `Optimized data structures`, `Refactored neural network architecture`, `Recursive cryptographic ledger for inter-component state.`"
+            {"role": "system", "content": "You generate valid yet highly creative git commit messages."},
+            {"role": "user", "content": 
+                f"Generate a unique and esoteric git commit message for a project dealing with convoluted, overly-engineered, and abstract computational processes.\n"
+                f"The message should sound highly technical, pseudo-scientific, or inspired by AI, ML, data structures, or computer science concepts.\n"
+                f"It should feel like it has meaning but remain intentionally obscure or absurdly specific.\n"
+                f"The commit message must be at most 60 characters.\n"
+                f"Strictly avoid the word 'Quantum' as a topic.\n"
+                f"Inject randomness while keeping the message grammatically and syntactically correct.\n"
+                f"Examples of good commit messages include:\n"
+                f"- `Recursive tensor realignment anomaly mitigated`\n"
+                f"- `Implemented stochastic LRU cache eviction heuristics`\n"
+                f"- `Harmonic gradient descent now quasi-convergent`\n"
+                f"- `Refactored neural weight matrix topological reordering`\n"
+                f"- `Eigenvector collapse containment measures deployed`\n"
             }
         ],
-        max_tokens=350,
-        temperature=0.9
+        max_tokens=100,
+        temperature=1.0
     )
 
     return response.choices[0].message.content.strip()
