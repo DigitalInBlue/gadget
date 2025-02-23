@@ -202,7 +202,7 @@ def generate_useless_component(class_name, input_type, output_type):
                     f"      try:\n"
                     f"          # Perform deliberately convoluted operations\n"
                     f"      except Exception as e:\n"
-                    f"          logger.warning(f'Caught exception during computation: {e}')\n"
+                    "          logger.warning(f'Caught exception during computation: {e}')\n"
                     f"  ```\n"
                     f"\n"
                     f"### **Naming Convention**\n"
