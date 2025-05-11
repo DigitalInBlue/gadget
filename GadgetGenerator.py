@@ -420,7 +420,20 @@ def generate_creative_commit_message():
         temperature=1.0,
     )
 
-    return response.choices[0].message.content.strip()
+    commit_message = response.choices[0].message.content.strip()
+
+    # Strip any enclosing single or double quotes
+    if commit_message.startswith('"') and commit_message.endswith('"'):
+        commit_message = commit_message[1:-1]
+    elif commit_message.startswith("'") and commit_message.endswith("'"):
+        commit_message = commit_message[1:-1]
+    elif commit_message.startswith("`") and commit_message.endswith("`"):
+        commit_message = commit_message[1:-1]
+    elif commit_message.startswith("```") and commit_message.endswith("```"):
+        commit_message = commit_message[3:-3]
+    elif commit_message.startswith("```python") and commit_message.endswith("```"):
+        commit_message = commit_message[10:-3]
+    return commit_message
 
 
 if __name__ == "__main__":
