@@ -3,27 +3,34 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_1bdacc82(GadgetComponent):
 
     def run(self, input_data: str) -> str:
         if not isinstance(input_data, str):
-            logger.error(f"Invalid input type: Expected str, received {type(input_data)}.")
+            logger.error(
+                f"Invalid input type: Expected str, received {type(input_data)}."
+            )
             return None
 
         try:
             logger.info("Initiating the multi-pass transformation pipeline.")
             entropy_balancer = self._init_entropy_balancer(input_data)
             logger.info("Entropy balancer initiated.")
-            
-            recursive_result = self._recursive_tensor_smoothing(entropy_balancer, depth=5)
+
+            recursive_result = self._recursive_tensor_smoothing(
+                entropy_balancer, depth=5
+            )
             logger.info("Recursive tensor smoothing completed.")
-            
-            spectral_wave = self._spectral_wave_propagation(recursive_result, magnitude=3)
+
+            spectral_wave = self._spectral_wave_propagation(
+                recursive_result, magnitude=3
+            )
             logger.info("Spectral wave propagation achieved.")
 
             final_output = self._stochastic_inversion_heuristic(spectral_wave)
             logger.info("Stochastic inversion heuristic applied.")
-            
+
             return final_output
 
         except Exception as e:
@@ -58,7 +65,7 @@ class Gadget_1bdacc82(GadgetComponent):
     def _stochastic_inversion_heuristic(self, data):
         try:
             logger.debug("Applying stochastic inversion heuristic.")
-            result = ''.join(chr(x % 256) for x in data)
+            result = "".join(chr(x % 256) for x in data)
             logger.debug(f"Final processed result: {result}")
             return result
         except Exception as e:
@@ -66,4 +73,4 @@ class Gadget_1bdacc82(GadgetComponent):
             raise
 
     def get_name(self):
-        return __file__ + ': ' + "Quantum Entropy Harmonizer"
+        return __file__ + ": " + "Quantum Entropy Harmonizer"

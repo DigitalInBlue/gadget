@@ -3,10 +3,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_f1a703d4(GadgetComponent):
     def run(self, input_data: int) -> dict:
         if not isinstance(input_data, int):
-            logger.error('Invalid input type: Expected int.')
+            logger.error("Invalid input type: Expected int.")
             return None
 
         try:
@@ -17,19 +18,25 @@ class Gadget_f1a703d4(GadgetComponent):
             input_data = abs(input_data)
 
             for i in range(1, input_data + 1):
-                transformed_value = ((i ** 3) % 101) * factor
+                transformed_value = ((i**3) % 101) * factor
                 result[i] = {
-                    'original': i,
-                    'transformed': transformed_value,
-                    'log': logging.getLevelName(logging.INFO) if transformed_value % 2 == 0 else logging.getLevelName(logging.DEBUG),
+                    "original": i,
+                    "transformed": transformed_value,
+                    "log": (
+                        logging.getLevelName(logging.INFO)
+                        if transformed_value % 2 == 0
+                        else logging.getLevelName(logging.DEBUG)
+                    ),
                 }
 
-            logger.info(f'Completed Prandtl-Clapeyron Transform for input {input_data}.')
+            logger.info(
+                f"Completed Prandtl-Clapeyron Transform for input {input_data}."
+            )
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self):
-        return __file__ + ': ' + "Prandtl-Clapeyron Transform Device"
+        return __file__ + ": " + "Prandtl-Clapeyron Transform Device"

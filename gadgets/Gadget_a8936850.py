@@ -5,6 +5,7 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_a8936850(GadgetComponent):
     def __init__(self):
         super().__init__()
@@ -13,13 +14,13 @@ class Gadget_a8936850(GadgetComponent):
         if not isinstance(input_data, dict):
             logger.error("Input data is not a dictionary.")
             return -1
-        
+
         try:
             # Transform input data using a pseudo-random chaotic mapping
             flattened_data = self._flatten_and_cast(input_data)
             chaotic_value = self._chaotic_mapping(flattened_data)
             transformed_value = self._hyperdimensional_transformation(chaotic_value)
-            
+
             # Ensure output is a sensible integer
             result = self._sanitize_output(transformed_value)
             return result
@@ -28,7 +29,7 @@ class Gadget_a8936850(GadgetComponent):
             return -1
 
     def get_name(self):
-        return __file__ + ': ' + "Quantum-Kaleidoscope Hypermapper"
+        return __file__ + ": " + "Quantum-Kaleidoscope Hypermapper"
 
     def _flatten_and_cast(self, data):
         """Flattens a nested dictionary and casts it to a list of integers."""
@@ -65,6 +66,7 @@ class Gadget_a8936850(GadgetComponent):
     def _sanitize_output(self, value):
         """Ensures the output is a reasonable integer value."""
         return max(0, min(9999, int(value)))
+
 
 # Example logger setup
 if __name__ == "__main__":

@@ -4,13 +4,14 @@ from PIL import Image
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_a0aa713c(GadgetComponent):
 
     def run(self, input_data: Image.Image) -> dict:
         if not isinstance(input_data, Image.Image):
-            logger.error(f'Invalid input type: Expected Image.Image.')
+            logger.error(f"Invalid input type: Expected Image.Image.")
             return None
-        
+
         try:
             # Example: Transform the image by applying a pseudo-random pixel permutation
             width, height = input_data.size
@@ -22,14 +23,14 @@ class Gadget_a0aa713c(GadgetComponent):
                 x = idx % width
                 y = idx // width
                 transformed_data[(x, y)] = pseudo_value
-            
-            logger.info('Transformation applied successfully.')
+
+            logger.info("Transformation applied successfully.")
 
             return transformed_data
-            
+
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self):
-        return __file__ + ': ' + "Pseudo-random Pixel Permutator"
+        return __file__ + ": " + "Pseudo-random Pixel Permutator"

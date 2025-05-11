@@ -11,7 +11,7 @@ class Gadget_ceee0cc4(GadgetComponent):
 
     def run(self, input_data: float) -> int:
         if not isinstance(input_data, float):
-            logger.error(f'Invalid input type: Expected float.')
+            logger.error(f"Invalid input type: Expected float.")
             return None
 
         try:
@@ -37,5 +37,5 @@ class Gadget_ceee0cc4(GadgetComponent):
             return final_result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

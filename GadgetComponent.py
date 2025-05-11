@@ -42,7 +42,9 @@ class GadgetComponent:
         self.run_time = time.time() - start_time
 
         if not self.is_valid_output(self.value):
-            self.logger.error(f"{self.get_name()} returned an invalid output type: {type(self.value)}")
+            self.logger.error(
+                f"{self.get_name()} returned an invalid output type: {type(self.value)}"
+            )
             return None
 
         # Mint a block after successful execution
@@ -53,7 +55,9 @@ class GadgetComponent:
 
     def is_valid_output(self, output):
         """Ensure the output type is one of the valid types"""
-        return isinstance(output, (int, float, str, bool, Image.Image, dict))  # dict used for JSON
+        return isinstance(
+            output, (int, float, str, bool, Image.Image, dict)
+        )  # dict used for JSON
 
     def get_blockchain(self):
         """Get the blockchain starting from the current block"""
@@ -70,15 +74,22 @@ class GadgetComponent:
 
     def get_blockchain_details(self):
         """Get the blockchain details starting from the current block"""
-        return [(block.get_name(), block.timestamp, block.previous_hash, block.block_hash) for block in self.get_blockchain()]
+        return [
+            (block.get_name(), block.timestamp, block.previous_hash, block.block_hash)
+            for block in self.get_blockchain()
+        ]
 
     def get_blockchain_summary(self):
         """Get a summary of the blockchain starting from the current block"""
-        return f"Blockchain Summary: {self.get_name()} -> " + " -> ".join([block.get_name() for block in self.get_blockchain()][1:])
+        return f"Blockchain Summary: {self.get_name()} -> " + " -> ".join(
+            [block.get_name() for block in self.get_blockchain()][1:]
+        )
 
     def get_blockchain_hashes_summary(self):
         """Get a summary of the blockchain hashes starting from the current block"""
-        return f"Blockchain Hashes: {self.get_name()} -> " + " -> ".join([block.block_hash for block in self.get_blockchain()][1:])
+        return f"Blockchain Hashes: {self.get_name()} -> " + " -> ".join(
+            [block.block_hash for block in self.get_blockchain()][1:]
+        )
 
     def get_block_hash(self):
         """Get the current block's hash"""
@@ -102,7 +113,7 @@ class GadgetComponent:
 
     def _mint_block(self, difficulty=5):
         """Mint a new block for the blockchain based on the component's execution with proof of work."""
-        self.logger.info(f"Starting minting process for \"{self.get_name()}\"...")
+        self.logger.info(f'Starting minting process for "{self.get_name()}"...')
         self.nonce = 0  # Initialize the nonce
 
         # Get the previous block's hash (if any)
@@ -110,7 +121,7 @@ class GadgetComponent:
             self.previous_hash = GadgetComponent.previous_block.block_hash
 
         # Proof of work: keep adjusting the nonce until we find a valid hash
-        target = '0' * difficulty  # The hash must have 'difficulty' leading zeros
+        target = "0" * difficulty  # The hash must have 'difficulty' leading zeros
         while True:
             # Combine execution details to create block data with the nonce
             block_data = f"{self.get_name()}-{self.value}-{self.timestamp}-{self.run_time}-{self.previous_hash}-{self.nonce}"
@@ -125,9 +136,13 @@ class GadgetComponent:
 
         # Log block details
         if self.previous_hash is None:
-            self.logger.info(f"Genesis block minted for \"{self.get_name()}\" - Hash: {self.block_hash[:8]} (Nonce: {self.nonce})")
+            self.logger.info(
+                f'Genesis block minted for "{self.get_name()}" - Hash: {self.block_hash[:8]} (Nonce: {self.nonce})'
+            )
         else:
-            self.logger.info(f"Minted block for \"{self.get_name()}\" - Hash: {self.block_hash[:8]}, Previous Hash: {self.previous_hash[:8]} (Nonce: {self.nonce})")
+            self.logger.info(
+                f'Minted block for "{self.get_name()}" - Hash: {self.block_hash[:8]}, Previous Hash: {self.previous_hash[:8]} (Nonce: {self.nonce})'
+            )
 
         # Set this block as the previous block for the next component
         GadgetComponent.previous_block = self

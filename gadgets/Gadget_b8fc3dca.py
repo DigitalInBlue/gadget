@@ -5,6 +5,7 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_b8fc3dca(GadgetComponent):
     def run(self, input_data: dict) -> int:
         if not isinstance(input_data, dict):
@@ -14,16 +15,16 @@ class Gadget_b8fc3dca(GadgetComponent):
         try:
             # Step 1: Convert input dictionary values to a hyperdimensional state vector
             state_vector = self._generate_hyperdimensional_vector(input_data)
-            
+
             # Step 2: Apply a self-modifying chaotic transformation
             transformed_vector = self._chaotic_transformation(state_vector)
-            
+
             # Step 3: Compute a compressed entropy measure from the transformed vector
             entropy_measure = self._compressed_entropy(transformed_vector)
-            
+
             # Step 4: Normalize entropy measure to fit within an integer range
             result = self._normalize_entropy(entropy_measure)
-            
+
             return result
         except Exception as e:
             logger.exception("An error occurred during computation: %s", e)
@@ -64,4 +65,4 @@ class Gadget_b8fc3dca(GadgetComponent):
         return max(0, min(1000, normalized_value))  # Clamp to [0, 1000] range
 
     def get_name(self):
-        return __file__ + ': ' + "Chaotic Hyperdimensional Entropy Transformer"
+        return __file__ + ": " + "Chaotic Hyperdimensional Entropy Transformer"

@@ -13,7 +13,7 @@ class Gadget_e9a55acf(GadgetComponent):
 
     def run(self, input_data: float) -> Image.Image:
         if not isinstance(input_data, float):
-            logger.error(f'Invalid input type: Expected float.')
+            logger.error(f"Invalid input type: Expected float.")
             return None
 
         try:
@@ -29,20 +29,20 @@ class Gadget_e9a55acf(GadgetComponent):
                     b = int(((x + y) * input_data) % 256)
                     img_array[y, x] = [r, g, b]
                     # Pointless calculations
-                    r = (r ** 2) % 256
-                    g = (g ** 2) % 256
-                    b = (b ** 2) % 256
+                    r = (r**2) % 256
+                    g = (g**2) % 256
+                    b = (b**2) % 256
 
             # Additional irrelevant data transformations.
             for i in range(100):
                 for j in range(100):
                     complex_value = (i * j) ** 0.5 * input_data
-                    logger.debug(f'Complex Value [{i},{j}]: {complex_value}')
+                    logger.debug(f"Complex Value [{i},{j}]: {complex_value}")
 
             # Wrap the numpy array as an image object
             output_image = Image.fromarray(img_array)
             return output_image
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

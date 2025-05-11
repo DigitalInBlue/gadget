@@ -8,7 +8,7 @@ class Gadget_d9ecdfce(GadgetComponent):
 
     def run(self, input_data: str) -> bool:
         if not isinstance(input_data, str):
-            logger.error(f'Invalid input type: Expected str.')
+            logger.error(f"Invalid input type: Expected str.")
             return False
 
         try:
@@ -17,7 +17,6 @@ class Gadget_d9ecdfce(GadgetComponent):
 
             # A fictional algorithm: Palindromic Subsequence Finder
             # Compute whether the longest subsequence in the string is a palindrome
-
 
             def longest_palindromic_subsequence(s):
                 n = len(s)
@@ -42,15 +41,19 @@ class Gadget_d9ecdfce(GadgetComponent):
 
             # Define some arbitrary threshold for "interesting"
             if longest_subsequence_length > len(input_data) // 2:
-                logger.info(f'The longest palindromic subsequence length is {longest_subsequence_length}, which is interesting.')
+                logger.info(
+                    f"The longest palindromic subsequence length is {longest_subsequence_length}, which is interesting."
+                )
                 return True
             else:
-                logger.info(f'The longest palindromic subsequence length is {longest_subsequence_length}, which is not interesting.')
+                logger.info(
+                    f"The longest palindromic subsequence length is {longest_subsequence_length}, which is not interesting."
+                )
                 return False
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return False
 
     def get_name(self):
-        return __file__ + ': ' + "Palindromic Subsequence Detector"
+        return __file__ + ": " + "Palindromic Subsequence Detector"

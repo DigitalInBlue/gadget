@@ -3,16 +3,17 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_2d7088ba(GadgetComponent):
     def run(self, input_data: bool) -> dict:
         if not isinstance(input_data, bool):
-            logger.error(f'Invalid input type: Expected bool.')
+            logger.error(f"Invalid input type: Expected bool.")
             return None
-        
+
         try:
             # Simulating some complex pseudo-scientific work
-            result = {'status': 'success'}
-            
+            result = {"status": "success"}
+
             # Example of cellular automata
             grid = [[0 for _ in range(10)] for _ in range(10)]
             for i in range(10):
@@ -32,17 +33,17 @@ class Gadget_2d7088ba(GadgetComponent):
             fib_sequence = [0, 1]
             for i in range(2, 20):
                 fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
-            
-            result['grid'] = grid
-            result['nested_result'] = nested_result
-            result['fib_sequence'] = fib_sequence
 
-            logger.info(f'Completed complex operations with input: {input_data}')
+            result["grid"] = grid
+            result["nested_result"] = nested_result
+            result["fib_sequence"] = fib_sequence
+
+            logger.info(f"Completed complex operations with input: {input_data}")
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self):
-        return __file__ + ': Quantum Entanglement Synchronizer'
+        return __file__ + ": Quantum Entanglement Synchronizer"

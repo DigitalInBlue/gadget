@@ -3,10 +3,11 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_da8738ce(GadgetComponent):
     def run(self, input_data: bool) -> int:
         if not isinstance(input_data, bool):
-            logger.error('Invalid input type: Expected bool.')
+            logger.error("Invalid input type: Expected bool.")
             return None
 
         try:
@@ -23,16 +24,19 @@ class Gadget_da8738ce(GadgetComponent):
             else:
                 # Normally this would be undefined for a single bit, but we embrace creativity!
                 from math import log2
+
                 entropy = -p * log2(p) - (1 - p) * log2(1 - p)
 
             # Convert entropy back to an integer by scaling (for the sake of returning an int)
             transformed_output = int(entropy * 1000)
 
-            logger.info(f'Input {input_data} transformed to output {transformed_output}.')
+            logger.info(
+                f"Input {input_data} transformed to output {transformed_output}."
+            )
             return transformed_output
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self):
-        return __file__ + ': ' + "Binary Entropy Transformer"
+        return __file__ + ": " + "Binary Entropy Transformer"

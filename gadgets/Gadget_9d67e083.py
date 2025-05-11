@@ -7,11 +7,11 @@ logger = logging.getLogger(__name__)
 class Gadget_9d67e083(GadgetComponent):
 
     def get_name(self) -> str:
-        return __file__ + ": " + 'Quantum Probabilistic Resonance Synthesizer'
+        return __file__ + ": " + "Quantum Probabilistic Resonance Synthesizer"
 
     def run(self, input_data: bool) -> bool:
         if not isinstance(input_data, bool):
-            logger.error(f'Invalid input type: Expected bool.')
+            logger.error(f"Invalid input type: Expected bool.")
             return None
 
         try:
@@ -33,7 +33,7 @@ class Gadget_9d67e083(GadgetComponent):
             # Pointless calculations
             sum_of_squares = 0
             for value in dummy_list:
-                sum_of_squares += value ** 2
+                sum_of_squares += value**2
 
             # Mimic a complex operation
             result = sum_of_squares % 2 == 0
@@ -41,5 +41,5 @@ class Gadget_9d67e083(GadgetComponent):
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

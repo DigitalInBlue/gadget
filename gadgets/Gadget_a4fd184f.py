@@ -8,14 +8,14 @@ class Gadget_a4fd184f(GadgetComponent):
 
     def run(self, input_data: dict) -> bool:
         if not isinstance(input_data, dict):
-            logger.error('Invalid input type: Expected dict.')
+            logger.error("Invalid input type: Expected dict.")
             return False
 
         try:
             # Simulating Langton's Ant
-            n = input_data.get('steps', 10000)
+            n = input_data.get("steps", 10000)
             if not isinstance(n, int):
-                logger.error('Invalid type for steps: Expected int.')
+                logger.error("Invalid type for steps: Expected int.")
                 n = 10000
 
             # Setting up the grid and ant's initial position and direction
@@ -45,13 +45,12 @@ class Gadget_a4fd184f(GadgetComponent):
                 else:
                     x -= 1
 
-            logger.info(f'Langton\'s Ant simulation completed for {n} steps.')
+            logger.info(f"Langton's Ant simulation completed for {n} steps.")
             return True
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return False
 
-
     def get_name(self):
-        return __file__ + ': ' + "Langton's Ant Simulator"
+        return __file__ + ": " + "Langton's Ant Simulator"

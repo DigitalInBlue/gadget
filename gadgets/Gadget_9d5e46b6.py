@@ -11,7 +11,7 @@ class Gadget_9d5e46b6(GadgetComponent):
 
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):
-            logger.error(f'Invalid input type: Expected str.')
+            logger.error(f"Invalid input type: Expected str.")
             return None
 
         try:
@@ -35,9 +35,9 @@ class Gadget_9d5e46b6(GadgetComponent):
             # Convert to the final integer output
             result = sum(transformed_data) + nested_result + accum
 
-            logger.info(f'Calculation completed with result: {result}')
+            logger.info(f"Calculation completed with result: {result}")
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

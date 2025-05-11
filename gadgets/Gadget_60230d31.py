@@ -8,7 +8,7 @@ class Gadget_60230d31(GadgetComponent):
 
     def run(self, input_data: str) -> bool:
         if not isinstance(input_data, str):
-            logger.error(f'Invalid input type: Expected str.')
+            logger.error(f"Invalid input type: Expected str.")
             return False
 
         try:
@@ -38,16 +38,18 @@ class Gadget_60230d31(GadgetComponent):
                     elif direction == 3:
                         ant_pos[1] -= 1
 
-                return ''.join(['1' if tuple(ant_pos) in black_cells else '0' for _ in range(10)])
+                return "".join(
+                    ["1" if tuple(ant_pos) in black_cells else "0" for _ in range(10)]
+                )
 
-            transformed_input = ''.join([c for c in input_data if c in '01']) or '0'
+            transformed_input = "".join([c for c in input_data if c in "01"]) or "0"
             result = langtons_ant(transformed_input)
 
-            return result.count('1') > result.count('0')
+            return result.count("1") > result.count("0")
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return False
 
     def get_name(self):
-        return __file__ + ': ' + "Langton's Ant Pattern Evaluator"
+        return __file__ + ": " + "Langton's Ant Pattern Evaluator"

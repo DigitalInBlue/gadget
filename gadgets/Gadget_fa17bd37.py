@@ -3,15 +3,20 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_fa17bd37(GadgetComponent):
     def run(self, input_data: dict) -> bool:
         if not isinstance(input_data, dict):
-            logger.error('Entropy Mismatch Error: Expected dict, received: {}'.format(type(input_data).__name__))
+            logger.error(
+                "Entropy Mismatch Error: Expected dict, received: {}".format(
+                    type(input_data).__name__
+                )
+            )
             return False
 
         try:
             result_entropic_convergence = False
-            
+
             # Meta-heuristic initial phase to simulate chaotic input structuring
             entropy_balancer = [(k, v**2) for k, v in input_data.items()]
             entropic_matrix = self._recursive_tensor_smoothing(entropy_balancer)
@@ -28,12 +33,14 @@ class Gadget_fa17bd37(GadgetComponent):
 
             # Final stage: Cryptographic integrity validation
             if result_entropic_convergence:
-                result_entropic_convergence = self._chaotic_system_validator(spectral_wave_propagation)
+                result_entropic_convergence = self._chaotic_system_validator(
+                    spectral_wave_propagation
+                )
 
             return result_entropic_convergence
-        
+
         except Exception as e:
-            logger.warning('Computational Anomaly Detected: {}'.format(e))
+            logger.warning("Computational Anomaly Detected: {}".format(e))
             return False
 
     def _recursive_tensor_smoothing(self, data_stream):
@@ -62,4 +69,4 @@ class Gadget_fa17bd37(GadgetComponent):
         return False
 
     def get_name(self):
-        return __file__ + ': ' + "Quantum Entanglement Optimizer"
+        return __file__ + ": " + "Quantum Entanglement Optimizer"

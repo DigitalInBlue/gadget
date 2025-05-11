@@ -12,7 +12,7 @@ class Gadget_552994ac(GadgetComponent):
 
     def run(self, input_data: Image.Image) -> str:
         if not isinstance(input_data, Image.Image):
-            logger.error('Invalid input type: Expected Image.Image.')
+            logger.error("Invalid input type: Expected Image.Image.")
             return None
 
         try:
@@ -34,9 +34,9 @@ class Gadget_552994ac(GadgetComponent):
 
                     result += sum(transformed_pixel)
 
-            logger.info(f'Processing complete. Result: {result}')
+            logger.info(f"Processing complete. Result: {result}")
             return str(result)
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

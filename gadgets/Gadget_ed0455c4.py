@@ -6,11 +6,15 @@ import random
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_ed0455c4(GadgetComponent):
 
     def run(self, input_data):
         if not isinstance(input_data, Image.Image):
-            logger.error("Invalid input type: Expected PIL.Image.Image but got %s", type(input_data))
+            logger.error(
+                "Invalid input type: Expected PIL.Image.Image but got %s",
+                type(input_data),
+            )
             return ""
 
         try:
@@ -30,7 +34,9 @@ class Gadget_ed0455c4(GadgetComponent):
                     # Recursive transformation with a chaotic mapping
                     chaotic_index = (x * y + pixel_value) % 1024
                     # Self-modifying logic - Simulate quantum superposition effects
-                    state_vector[chaotic_index] += random.uniform(-1, 1) * (pixel_value / 255.0)
+                    state_vector[chaotic_index] += random.uniform(-1, 1) * (
+                        pixel_value / 255.0
+                    )
 
             # Post-transform entropy compression
             entropy_value = sum(np.sin(state_vector)) / 1024.0
@@ -44,4 +50,4 @@ class Gadget_ed0455c4(GadgetComponent):
             return ""
 
     def get_name(self):
-        return __file__ + ': ' + "Quantum Entropy Collapse Engine"
+        return __file__ + ": " + "Quantum Entropy Collapse Engine"

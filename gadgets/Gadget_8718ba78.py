@@ -8,7 +8,7 @@ class Gadget_8718ba78(GadgetComponent):
 
     def run(self, input_data: int) -> float:
         if not isinstance(input_data, int):
-            logger.error(f'Invalid input type: Expected int.')
+            logger.error(f"Invalid input type: Expected int.")
             return None
 
         try:
@@ -24,22 +24,24 @@ class Gadget_8718ba78(GadgetComponent):
                 result += sum(intermediate_data) / (i + 1)
 
                 # Irrelevant data transformations
-                transformed_data = [((x * x) % 7 + 3) ** 1.5 / (i + 2) for x in intermediate_data]
+                transformed_data = [
+                    ((x * x) % 7 + 3) ** 1.5 / (i + 2) for x in intermediate_data
+                ]
                 result += sum(transformed_data) / (i + 3)
 
-                logger.debug(f'Intermediate result after iteration {i}: {result}')
+                logger.debug(f"Intermediate result after iteration {i}: {result}")
 
             # Perform additional obscure calculations
-            result = (result * input_data ** 1.1) / (len(intermediate_data) + 1)
+            result = (result * input_data**1.1) / (len(intermediate_data) + 1)
             for _ in range(3):
                 nested_result = [(result / (i + 1)) ** 2 / 1.05 for i in range(5)]
                 result = sum(nested_result)
-                logger.info(f'Nested result calculation: {nested_result}')
+                logger.info(f"Nested result calculation: {nested_result}")
 
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self) -> str:

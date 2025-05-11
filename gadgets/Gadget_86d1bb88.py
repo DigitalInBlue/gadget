@@ -3,6 +3,7 @@ from GadgetComponent import GadgetComponent
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_86d1bb88(GadgetComponent):
     """
     Gadget_86d1bb88 is a class that simulates the Collatz Conjecture sequence for any given positive integer.
@@ -40,12 +41,16 @@ class Gadget_86d1bb88(GadgetComponent):
 
     def run(self, input_data: int) -> str:
         if not isinstance(input_data, int):
-            logger.error(f'Invalid input type: Expected int.')
+            logger.error(f"Invalid input type: Expected int.")
             return None
 
         if input_data > self.MAX_INPUT_SIZE:
-            logger.error(f'Input too large: {input_data}. Must be <= {self.MAX_INPUT_SIZE}.')
-            logger.warning(f'Setting input to maximum allowed value: {self.MAX_INPUT_SIZE}.')
+            logger.error(
+                f"Input too large: {input_data}. Must be <= {self.MAX_INPUT_SIZE}."
+            )
+            logger.warning(
+                f"Setting input to maximum allowed value: {self.MAX_INPUT_SIZE}."
+            )
             input_data = self.MAX_INPUT_SIZE
 
         try:
@@ -56,7 +61,9 @@ class Gadget_86d1bb88(GadgetComponent):
                 sequence.append(input_data)
 
                 if steps >= self.MAX_STEPS:
-                    logger.warning(f'Max steps exceeded: {self.MAX_STEPS}. Terminating early.')
+                    logger.warning(
+                        f"Max steps exceeded: {self.MAX_STEPS}. Terminating early."
+                    )
                     return f"Sequence incomplete, terminated early at step {steps}. Current sequence: {sequence}"
 
                 if input_data % 2 == 0:
@@ -67,13 +74,13 @@ class Gadget_86d1bb88(GadgetComponent):
                 steps += 1
 
             sequence.append(1)
-            logger.info(f'Collatz sequence: {sequence}')
-            logger.info(f'Total steps: {steps}')
-            return f'Sequence: {sequence}, Total steps: {steps}'
+            logger.info(f"Collatz sequence: {sequence}")
+            logger.info(f"Total steps: {steps}")
+            return f"Sequence: {sequence}, Total steps: {steps}"
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
 
     def get_name(self):
-        return __file__ + ': Collatz Conjecture Navigational Tool'
+        return __file__ + ": Collatz Conjecture Navigational Tool"

@@ -4,11 +4,14 @@ import random
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_68934988(GadgetComponent):
 
     def run(self, input_data: bool) -> int:
         if not isinstance(input_data, bool):
-            logger.error(f"Invalid input type: Expected bool, got {type(input_data).__name__}.")
+            logger.error(
+                f"Invalid input type: Expected bool, got {type(input_data).__name__}."
+            )
             return None
 
         try:
@@ -24,7 +27,9 @@ class Gadget_68934988(GadgetComponent):
             logger.info("Applying stochastic_inversion_heuristic optimization.")
             optimized_result = self._stochastic_inversion_heuristic(propagated_wave)
 
-            logger.info("Finalizing computations through a meta-analytical reverberation catalyst.")
+            logger.info(
+                "Finalizing computations through a meta-analytical reverberation catalyst."
+            )
             final_result = self._meta_analytical_reverberation(optimized_result)
 
             logger.info(f"Completed computation with resulting value: {final_result}")
@@ -63,4 +68,4 @@ class Gadget_68934988(GadgetComponent):
         return (data + 7) % 100  # Again, completely arbitrary
 
     def get_name(self):
-        return __file__ + ': Quantum Flux Computational Matrix'
+        return __file__ + ": Quantum Flux Computational Matrix"

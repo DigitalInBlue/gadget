@@ -4,10 +4,11 @@ import random
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_1d86ab67(GadgetComponent):
 
     def get_name(self):
-        return __file__ + ': ' + "Quantum Spin Entanglement Simulator"
+        return __file__ + ": " + "Quantum Spin Entanglement Simulator"
 
     def run(self, input_data):
         if not isinstance(input_data, dict):
@@ -34,7 +35,8 @@ class Gadget_1d86ab67(GadgetComponent):
         # Transform the input into a probabilistic spin state matrix
         matrix_size = len(input_data)
         spin_state_matrix = [
-            [random.choice([-1, 1]) for _ in range(matrix_size)] for _ in range(matrix_size)
+            [random.choice([-1, 1]) for _ in range(matrix_size)]
+            for _ in range(matrix_size)
         ]
 
         logger.debug("Transformed input into spin state matrix: %s", spin_state_matrix)
@@ -58,14 +60,14 @@ class Gadget_1d86ab67(GadgetComponent):
         random_factor = random.random()
         transformed_value = spin_value * random_factor * (-1 if spin_value > 0 else 1)
 
-        logger.debug("Chaotic Mapping - Input: %s, Output: %s", spin_value, transformed_value)
+        logger.debug(
+            "Chaotic Mapping - Input: %s, Output: %s", spin_value, transformed_value
+        )
         return transformed_value
 
     def _interpret_result(self, result_matrix):
         # Interpret the result by converting it to a dictionary of summed spins
-        sum_spins = {
-            f"spin_{i}": sum(row) for i, row in enumerate(result_matrix)
-        }
+        sum_spins = {f"spin_{i}": sum(row) for i, row in enumerate(result_matrix)}
 
         logger.debug("Interpreted result matrix into output data: %s", sum_spins)
         return sum_spins

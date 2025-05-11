@@ -6,15 +6,19 @@ import numpy as np
 # Setup logging
 logger = logging.getLogger(__name__)
 
+
 class Gadget_dc67671d(GadgetComponent):
     def get_name(self):
-        return __file__ + ': ' + "Quantum Entropy Hybridizer"
+        return __file__ + ": " + "Quantum Entropy Hybridizer"
 
     def run(self, input_data: bool) -> float:
         if not isinstance(input_data, bool):
-            logger.error("Invalid input type: Expected 'bool', got '%s'", type(input_data).__name__)
-            return float('nan')
-        
+            logger.error(
+                "Invalid input type: Expected 'bool', got '%s'",
+                type(input_data).__name__,
+            )
+            return float("nan")
+
         try:
             # Seed based on boolean input for deterministic randomness
             seed_value = 42 if input_data else 84
@@ -40,4 +44,4 @@ class Gadget_dc67671d(GadgetComponent):
 
         except Exception as e:
             logger.error("Execution error: %s", str(e))
-            return float('nan')
+            return float("nan")

@@ -11,7 +11,7 @@ class Gadget_9868a255(GadgetComponent):
 
     def run(self, input_data: float) -> dict:
         if not isinstance(input_data, float):
-            logger.error(f'Invalid input type: Expected float.')
+            logger.error(f"Invalid input type: Expected float.")
             return None
 
         try:
@@ -27,12 +27,12 @@ class Gadget_9868a255(GadgetComponent):
 
             # Step 2: Perform a recursive calculation
 
-
             def recursive_sum(n):
                 if n <= 0:
                     return 0
                 else:
                     return n + recursive_sum(n - 1)
+
             recursive_result = recursive_sum(int(input_data))
             logger.info(f"Recursive calculation result: {recursive_result}")
 
@@ -42,18 +42,20 @@ class Gadget_9868a255(GadgetComponent):
             logger.info("Data transformation complete.")
 
             # Step 4: Compute some cellular automata pattern
-            automata_result = sum((i + j) % 3 for i in range(matrix_size) for j in range(matrix_size))
+            automata_result = sum(
+                (i + j) % 3 for i in range(matrix_size) for j in range(matrix_size)
+            )
             logger.info(f"Cellular automata result: {automata_result}")
 
             # Step 5: Compile results
-            result['matrix'] = matrix
-            result['recursive_sum'] = recursive_result
-            result['transformed_data'] = transformed_data
-            result['automata_result'] = automata_result
+            result["matrix"] = matrix
+            result["recursive_sum"] = recursive_result
+            result["transformed_data"] = transformed_data
+            result["automata_result"] = automata_result
 
             logger.info("Computation complete.")
             return result
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None

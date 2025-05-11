@@ -24,28 +24,29 @@ def ensure_newline_at_end(lines):
         lines[-1] += "\n"
     return lines
 
+
 def process_file(file_path):
     """
     Process a single file: remove trailing whitespace, ensure newline at the end,
     and fix Flake8 E302 and E303 errors (two blank lines before functions or classes and no more than two blank lines in a row).
     """
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         lines = file.readlines()
 
     lines = remove_trailing_whitespace(lines)
     lines = ensure_newline_at_end(lines)
 
     # Write the processed lines back to the file
-    with open(file_path, 'w') as file:
+    with open(file_path, "w") as file:
         file.writelines(lines)
 
 
 def main():
     # Directory containing the .py files
-    directory = './gadgets'
+    directory = "./gadgets"
 
     # Find all Python files in the ./gadgets subdirectory
-    py_files = glob.glob(os.path.join(directory, '*.py'))
+    py_files = glob.glob(os.path.join(directory, "*.py"))
 
     for file_path in py_files:
         process_file(file_path)

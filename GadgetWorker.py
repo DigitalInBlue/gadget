@@ -7,15 +7,17 @@ import subprocess
 import sys
 
 # Configure colored logging
-coloredlogs.install(level='DEBUG')
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+coloredlogs.install(level="DEBUG")
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 # List of available Python programs
 scripts = [
-    'GadgetGenerator.py',
-    'GadgetIssueGenerator.py',
-    'GadgetIssueCloser.py',
+    "GadgetGenerator.py",
+    "GadgetIssueGenerator.py",
+    "GadgetIssueCloser.py",
     # You can easily add more scripts here
 ]
 
@@ -51,12 +53,24 @@ def main():
             if 6 <= current_hour < 22:
                 # Pick a random script or None
                 script_to_run = random.choice(scripts + [None])
-                logger.info(f"Selected script: {script_to_run if script_to_run else 'None'}")
+                logger.info(
+                    f"Selected script: {script_to_run if script_to_run else 'None'}"
+                )
 
                 # Run the selected script or None
                 last_exit_code = run_script(script_to_run)
             else:
-                logger.info("Outside of the 6 AM - 10 PM window. No scripts will be run.")
+                logger.info(
+                    "Outside of the 6 AM - 10 PM window. No scripts will be run."
+                )
+
+            # Run the black formatter
+            logger.info("Running black formatter...")
+            try:
+                subprocess.run([sys.executable, "-m", "black", "."], check=True)
+                logger.info("Black formatter ran successfully.")
+            except subprocess.CalledProcessError as e:
+                logger.error(f"Error running black formatter: {e}")
 
             if last_exit_code is None or last_exit_code < 2:
                 # Pick a random time between MIN_TIME and MAX_TIME in minutes
@@ -65,7 +79,11 @@ def main():
                 logger.info(f"Waiting for {delay_minutes} minutes...")
 
                 # Progress bar for the delay
-                for _ in tqdm(range(delay_seconds), desc=f"Waiting {delay_minutes} minutes", unit="s"):
+                for _ in tqdm(
+                    range(delay_seconds),
+                    desc=f"Waiting {delay_minutes} minutes",
+                    unit="s",
+                ):
                     time.sleep(1)
 
     except KeyboardInterrupt:

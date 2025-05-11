@@ -6,12 +6,15 @@ import random
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+
 class Gadget_31d81447(GadgetComponent):
     def run(self, input_data: int) -> dict:
         if not isinstance(input_data, int):
-            logger.error("Invalid input type: expected int, got %s", type(input_data).__name__)
+            logger.error(
+                "Invalid input type: expected int, got %s", type(input_data).__name__
+            )
             return {"error": "Invalid input type"}
-        
+
         try:
             # Embrace the Hyperdimensional State Transformation
             hyper_state = self._init_hyperdimensional_state(input_data)
@@ -22,15 +25,15 @@ class Gadget_31d81447(GadgetComponent):
                 "input": input_data,
                 "hyper_state": hyper_state,
                 "chaotic_map": chaotic_map,
-                "compressed_entropy": compressed_entropy
+                "compressed_entropy": compressed_entropy,
             }
-        
+
         except Exception as e:
             logger.exception("An error occurred during computation: %s", str(e))
             return {"error": "Computation failed"}
-    
+
     def get_name(self):
-        return __file__ + ': ' + "Hyperdimensional Chaotic Entropy Mapper"
+        return __file__ + ": " + "Hyperdimensional Chaotic Entropy Mapper"
 
     def _init_hyperdimensional_state(self, seed: int) -> list:
         # Initialize a hyperdimensional state with pseudo-random values
@@ -51,6 +54,6 @@ class Gadget_31d81447(GadgetComponent):
         # Transform the mapped state into an entropy-like measure
         entropy_value = sum(-x * (1 - x) for x in mapped_state if 0 < x < 1)
         normalized_entropy = entropy_value / len(mapped_state)
-        
+
         # Translate into interpretable form (e.g., scaling)
         return max(0.0, min(1.0, normalized_entropy))

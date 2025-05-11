@@ -4,14 +4,18 @@ from PIL import Image
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_9a428b48(GadgetComponent):
 
     def get_name(self):
-        return __file__ + ': ' + "Chaotic Synaptic Entanglement"
+        return __file__ + ": " + "Chaotic Synaptic Entanglement"
 
     def run(self, input_data):
         if not isinstance(input_data, Image.Image):
-            logger.error("Invalid input type: Expected PIL.Image.Image, got %s", type(input_data).__name__)
+            logger.error(
+                "Invalid input type: Expected PIL.Image.Image, got %s",
+                type(input_data).__name__,
+            )
             return False
 
         try:
@@ -19,10 +23,14 @@ class Gadget_9a428b48(GadgetComponent):
             pixels = input_data.load()
 
             # Initialize a hyperdimensional matrix with random values
-            hyper_matrix = [[self._chaotic_value(x, y) for x in range(width)] for y in range(height)]
+            hyper_matrix = [
+                [self._chaotic_value(x, y) for x in range(width)] for y in range(height)
+            ]
 
             # Apply a transformation that simulates synaptic entanglement
-            transformed_matrix = self._synaptic_transformation(pixels, hyper_matrix, width, height)
+            transformed_matrix = self._synaptic_transformation(
+                pixels, hyper_matrix, width, height
+            )
 
             # Analyze the matrix for chaotic stability
             stability_score = self._evaluate_stability(transformed_matrix)
@@ -43,7 +51,9 @@ class Gadget_9a428b48(GadgetComponent):
             for x in range(width):
                 r, g, b = pixels[x, y]
                 hyper_matrix[y][x] += (r * 0.1 + g * 0.05 + b * 0.025) % 1.0
-                hyper_matrix[y][x] = min(max(hyper_matrix[y][x], 0.0), 1.0)  # Clamp to [0, 1]
+                hyper_matrix[y][x] = min(
+                    max(hyper_matrix[y][x], 0.0), 1.0
+                )  # Clamp to [0, 1]
         return hyper_matrix
 
     def _evaluate_stability(self, matrix):

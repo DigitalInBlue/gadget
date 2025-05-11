@@ -3,10 +3,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class Gadget_c06dd9bb(GadgetComponent):
     def run(self, input_data: float) -> int:
         if not isinstance(input_data, float):
-            logger.error(f'Invalid input type: Expected float.')
+            logger.error(f"Invalid input type: Expected float.")
             return None
 
         try:
@@ -24,11 +25,11 @@ class Gadget_c06dd9bb(GadgetComponent):
                 cellular_automata = (cellular_automata * 3 + m) % 7
 
             final_result = int(sum(transformed_data) + cellular_automata)
-            logger.info(f'Computed final result: {final_result}')
+            logger.info(f"Computed final result: {final_result}")
             return final_result
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return 0
 
     def get_name(self):
-        return __file__ + ': Transdimensional Quantum Harmonic Oscillator'
+        return __file__ + ": Transdimensional Quantum Harmonic Oscillator"

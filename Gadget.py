@@ -15,8 +15,10 @@ import copy
 import argparse
 
 # Configure colored logging
-coloredlogs.install(level='DEBUG')
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+coloredlogs.install(level="DEBUG")
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -37,7 +39,11 @@ class Gadget:
             return
 
         # Make sure there are Python files in the directory
-        py_files = [f for f in os.listdir(directory) if f.endswith(".py") and f not in ["Gadget.py", "GadgetComponent.py"]]
+        py_files = [
+            f
+            for f in os.listdir(directory)
+            if f.endswith(".py") and f not in ["Gadget.py", "GadgetComponent.py"]
+        ]
 
         if not py_files:
             logger.error(f"No Python files found in directory: {directory}")
@@ -64,7 +70,9 @@ class Gadget:
                     if obj != GadgetComponent and issubclass(obj, GadgetComponent):
                         instance = obj()  # Create an instance of the class
                         self.components.append(instance)
-                        logger.info(f"Discovered valid component: \"{instance.get_name()}\" from {module_name}")
+                        logger.info(
+                            f'Discovered valid component: "{instance.get_name()}" from {module_name}'
+                        )
                     # else:
                     #     logger.info(f"Skipped class: {name} from {module_name}")
 
@@ -84,7 +92,9 @@ class Gadget:
         elif input_type == float:
             return random.uniform(1.0, 100.0)
         elif input_type == str:
-            return ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=10))  # Random 10-char string
+            return "".join(
+                random.choices("abcdefghijklmnopqrstuvwxyz", k=10)
+            )  # Random 10-char string
         elif input_type == bool:
             return random.choice([True, False])
         elif input_type == Image.Image:
@@ -95,14 +105,22 @@ class Gadget:
 
     def generate_random_image(self):
         """Generate a random PNG image"""
-        img = Image.new('RGB', (64, 64), color=(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+        img = Image.new(
+            "RGB",
+            (64, 64),
+            color=(
+                random.randint(0, 255),
+                random.randint(0, 255),
+                random.randint(0, 255),
+            ),
+        )
         return img
 
     def generate_random_json(self):
         """Generate a random dictionary representing a JSON object"""
         return {
-            "key": random.choice(['foo', 'bar', 'baz']),
-            "value": random.randint(1, 100)
+            "key": random.choice(["foo", "bar", "baz"]),
+            "value": random.randint(1, 100),
         }
 
     def assemble_machine(self):
@@ -124,7 +142,7 @@ class Gadget:
             self.steps.append(remaining_components.pop())
 
             # Report what component we are starting with
-            logger.info(f"Starting with \"{self.steps[0].get_name()}\"")
+            logger.info(f'Starting with "{self.steps[0].get_name()}"')
 
             # Get the output type of the first component
             run_signature = inspect.signature(self.steps[0].run)
@@ -139,13 +157,15 @@ class Gadget:
 
                     # Instead of assuming the input/output types, inspect the run function's input and output types
                     run_signature = inspect.signature(component.run)
-                    input_type = run_signature.parameters['input_data'].annotation
+                    input_type = run_signature.parameters["input_data"].annotation
                     output_type = run_signature.return_annotation
 
                     # logger.debug(f"Checking compatibility of {component.get_name()} with {current_output_type}")
                     if current_output_type == input_type:
                         self.steps.append(component)
-                        logger.info(f"\"{current_gadget_name}\" --> \"{component.get_name()}\"")
+                        logger.info(
+                            f'"{current_gadget_name}" --> "{component.get_name()}"'
+                        )
                         current_output_type = output_type
                         current_gadget_name = component.get_name()
                         remaining_components.remove(component)
@@ -154,7 +174,9 @@ class Gadget:
 
                 if not compatible_component_found:
                     self.unused_components.extend(remaining_components)
-                    logger.info(f"Done configuring the gadget with {len(self.steps)} gadgets.")
+                    logger.info(
+                        f"Done configuring the gadget with {len(self.steps)} gadgets."
+                    )
                     break
 
             if not self.steps:
@@ -172,7 +194,7 @@ class Gadget:
 
         # Get the output type of component_a and the input type of component_b
         output_type = run_a_signature.return_annotation
-        input_type = run_b_signature.parameters['input_data'].annotation
+        input_type = run_b_signature.parameters["input_data"].annotation
 
         # Check if the output of component_a can be the input of component_b
         return output_type == input_type
@@ -186,17 +208,19 @@ class Gadget:
             input = copy.copy(output)
             # logger.info(f"--> {step.get_name()}({input})")
             output = step.execute(input)  # Use the execute method for validation
-            logger.info(f"--> \"{step.get_name()}({input})\" -> \"{output}\"")
+            logger.info(f'--> "{step.get_name()}({input})" -> "{output}"')
 
             if output is None:
-                logger.error(f"Execution stopped at \"{step.get_name()}\" due to invalid output.")
+                logger.error(
+                    f'Execution stopped at "{step.get_name()}" due to invalid output.'
+                )
                 return None
         return output
 
     def report_incompatibilities(self):
         """Report incompatible components and why they couldn't be used"""
         for component in self.unused_components:
-            logger.info(f"Unused: \"{component.get_name()}\"")
+            logger.info(f'Unused: "{component.get_name()}"')
 
     # Add this method to the Gadget class to print the blockchain
     def print_blockchain(self):
@@ -211,33 +235,37 @@ class Gadget:
             logger.info(f"Block {block_number}:")
             logger.info(f"  Component: {component.get_name()}")
 
-            if hasattr(component, 'block_hash') and component.block_hash:
+            if hasattr(component, "block_hash") and component.block_hash:
                 logger.info(f"  Hash: {component.block_hash[:8]}")
             else:
                 logger.info("  Hash: None")
 
-            if hasattr(component, 'previous_hash') and component.previous_hash:
-                logger.info(f"  Previous Hash: {component.previous_hash[:8] if component.previous_hash else 'None'}")
+            if hasattr(component, "previous_hash") and component.previous_hash:
+                logger.info(
+                    f"  Previous Hash: {component.previous_hash[:8] if component.previous_hash else 'None'}"
+                )
             else:
                 logger.info("  Previous Hash: None")
 
-            if hasattr(component, 'nonce') and component.nonce:
+            if hasattr(component, "nonce") and component.nonce:
                 logger.info(f"  Nonce: {component.nonce}")
             else:
                 logger.info("  Nonce: None")
 
-            if hasattr(component, 'run_time') and component.run_time:
+            if hasattr(component, "run_time") and component.run_time:
                 logger.info(f"  Run Time: {component.run_time:.4f} seconds")
             else:
                 logger.info("  Run Time: None")
 
-            if hasattr(component, 'mint_time') and component.mint_time:
+            if hasattr(component, "mint_time") and component.mint_time:
                 logger.info(f"  Mint Time: {component.mint_time:.4f} seconds")
             else:
                 logger.info("  Mint Time: None")
 
-            if hasattr(component, 'timestamp') and component.timestamp:
-                logger.info(f"  Timestamp: {component.timestamp.strftime("%d%m%Y-%H:%M:%S.%f")[:-2]}")
+            if hasattr(component, "timestamp") and component.timestamp:
+                logger.info(
+                    f"  Timestamp: {component.timestamp.strftime("%d%m%Y-%H:%M:%S.%f")[:-2]}"
+                )
             else:
                 logger.info("  Timestamp: None")
 
@@ -250,7 +278,9 @@ def run_specific_gadget(gadget, class_name):
     for component in gadget.components:
         if component.__class__.__name__ == class_name:
             logger.info(f"Running specific gadget: {class_name}")
-            first_component_input_type = inspect.signature(component.run).parameters['input_data'].annotation
+            first_component_input_type = (
+                inspect.signature(component.run).parameters["input_data"].annotation
+            )
             initial_input = gadget.generate_random_input(first_component_input_type)
             final_output = component.execute(initial_input)
             logger.info(f"Output from {class_name}: {final_output}")
@@ -262,9 +292,19 @@ def run_specific_gadget(gadget, class_name):
 # Main execution
 if __name__ == "__main__":
     # Set up argument parsing
-    parser = argparse.ArgumentParser(description="Run a specific Gadget or a random one.")
-    parser.add_argument('--debug', type=str, help='Optional Gadget class name to debug a specific gadget.')
-    parser.add_argument('--debugLoop', type=str, help='Optional Gadget class name to debug a specific gadget in a loop until it crashes.')
+    parser = argparse.ArgumentParser(
+        description="Run a specific Gadget or a random one."
+    )
+    parser.add_argument(
+        "--debug",
+        type=str,
+        help="Optional Gadget class name to debug a specific gadget.",
+    )
+    parser.add_argument(
+        "--debugLoop",
+        type=str,
+        help="Optional Gadget class name to debug a specific gadget in a loop until it crashes.",
+    )
     args = parser.parse_args()
 
     # Start timer
@@ -307,17 +347,27 @@ if __name__ == "__main__":
             logger.info("\n" + gadget_chain)
 
             # Get what the first component expects as input
-            first_component_input_type = inspect.signature(assembled_steps[0].run).parameters['input_data'].annotation
-            logger.info(f"First component input type: {first_component_input_type} for \"{assembled_steps[0].get_name()}\"")
+            first_component_input_type = (
+                inspect.signature(assembled_steps[0].run)
+                .parameters["input_data"]
+                .annotation
+            )
+            logger.info(
+                f'First component input type: {first_component_input_type} for "{assembled_steps[0].get_name()}"'
+            )
 
             # Generate a random input of the expected type for the first component of type 'first_component_input_type'
             initial_input = gadget.generate_random_input(first_component_input_type)
-            logger.info(f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})")
+            logger.info(
+                f"Random initial input generated: {initial_input} (type: {type(initial_input).__name__})"
+            )
 
             # Execute the machine if possible
             if assembled_steps:
                 final_output = gadget.execute(initial_input)
-                logger.info(f"Final output: {final_output} (type: {type(final_output).__name__})")
+                logger.info(
+                    f"Final output: {final_output} (type: {type(final_output).__name__})"
+                )
 
             # Report incompatible components
             gadget.report_incompatibilities()

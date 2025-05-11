@@ -11,13 +11,13 @@ class Gadget_bc91e434(GadgetComponent):
 
     def run(self, input_data: str) -> int:
         if not isinstance(input_data, str):
-            logger.error(f'Invalid input type: Expected str.')
+            logger.error(f"Invalid input type: Expected str.")
             return None
 
         try:
             complex_value = 0
             length = len(input_data)
-            logger.info(f'Processing input of length: {length}')
+            logger.info(f"Processing input of length: {length}")
 
             # First nested loop for arbitrary calculations
             for i in range(length):
@@ -28,7 +28,9 @@ class Gadget_bc91e434(GadgetComponent):
                     else:
                         complex_value -= (temp_value + j) ** 2
 
-            logger.debug(f'Intermediate complex value after first loop: {complex_value}')
+            logger.debug(
+                f"Intermediate complex value after first loop: {complex_value}"
+            )
 
             # Second nested loop involving irrelevant data transformations
             for i in range(length):
@@ -36,13 +38,15 @@ class Gadget_bc91e434(GadgetComponent):
                     sub_value = (ord(input_data[j]) ** 3 + complex_value) % 97
                     for k in range(sub_value):
                         complex_value += (sub_value + k) // (i + 1)
-                    logger.debug(f'Processing sub_value: {sub_value}, complex_value: {complex_value}')
+                    logger.debug(
+                        f"Processing sub_value: {sub_value}, complex_value: {complex_value}"
+                    )
 
             final_value = complex_value % 100000
-            logger.info(f'Final computed value: {final_value}')
+            logger.info(f"Final computed value: {final_value}")
 
             return final_value
 
         except Exception as e:
-            logger.warning(f'Caught exception during computation: {e}')
+            logger.warning(f"Caught exception during computation: {e}")
             return None
