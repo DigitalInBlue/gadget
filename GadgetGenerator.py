@@ -307,7 +307,7 @@ def generate_useleful_component(class_name, input_type, output_type):
 def save_component_to_file(component_code, class_name):
     # If the file begins with "```python", remove it
     if component_code.startswith("```python"):
-        component_code = component_code[len("```python"):].strip()
+        component_code = component_code[len("```python") :].strip()
 
     # If the file ends with "```", remove it
     if component_code.endswith("```"):
@@ -369,7 +369,7 @@ def run_tests_and_handle_result(file_name):
     # Run the black formatter
     logger.info("Running black formatter...")
     try:
-        subprocess.run([sys.executable, "-m", "black", "."], check=True)
+        subprocess.run([sys.executable, "-m", "black", "./gadgets"], check=True)
         logger.info("Black formatter ran successfully.")
     except subprocess.CalledProcessError as e:
         logger.error(f"Error running black formatter: {e}")
