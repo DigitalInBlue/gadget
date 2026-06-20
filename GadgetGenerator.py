@@ -325,7 +325,7 @@ def run_flake8_and_handle_result():
     logger.info("Running flake8...")
     try:
         result = subprocess.run(
-            ["flake8", "--exit-zero"], capture_output=True, text=True
+            ["flake8", "--exit-zero", "gadgets"], capture_output=True, text=True
         )
         if result.stdout.strip():
             logger.error("Flake8 found issues:\n" + result.stdout)
